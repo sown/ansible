@@ -1,0 +1,30 @@
+# Install NPRE and it's config
+# 
+# This does not install all of the checks
+
+- name: Install NRPE server
+  apt:
+    name: nagios-nrpe-server
+    state: present
+  become: yes
+
+- name: Make local NRPE plugins directory
+  file:
+    path: /usr/local/lib/nagios/plugins
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    recurse: yes
+  become: yes
+
+- name: Deploy nrpe_local.cfg
+  template:
+    src: nrpe_local.cfg.j2
+    dest: /etc/nagios/nrpe_local.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload Nagios NRPE server
+  become: yes

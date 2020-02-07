@@ -5,4 +5,5 @@
 - hosts: all
   roles:
     - sown-common
+    - monitored
   tags: common
