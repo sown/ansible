@@ -1,0 +1,7 @@
+# The playbook.
+# It will take a while to run all of this
+# You can restrict how much you run using tags.
+
+- hosts: all
+  roles:
+    - sown-common
