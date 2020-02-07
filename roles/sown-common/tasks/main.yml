@@ -3,3 +3,5 @@
 
 - import_tasks: install-utilities.yml
   tags: utilities
+- import_tasks: motd.yml
+  tags: motd

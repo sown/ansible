@@ -1,0 +1,43 @@
+# Add the SOWN MOTD
+- name: Install Common Packages for MOTD
+  apt:
+    name:
+      - libpam-modules
+      - base-files
+      - figlet
+    state: present
+  become: yes
+
+- name: Install Ubuntu-specific Packages for MOTD
+  apt:
+    name:
+      - ubuntu-release-upgrader-core
+      - update-notifier-common
+    state: present
+  become: yes
+  when:
+    - ansible_facts['distribution'] == "Ubuntu"
+
+- name: Generate figlet for /etc/motd
+  shell: printf "Welcome to\n$(figlet -f /usr/share/figlet/smslant.flf SOWN {{ ansible_hostname }})\n\n"
+  register: motd
+  changed_when: False
+  check_mode: no
+
+- name: Deploy /etc/motd
+  copy:
+    content: "{{ motd.stdout }}"
+    dest: "/etc/motd"
+  become: yes
+
+# Remove old files
+
+- name: Remove deprecated MOTD files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "/etc/motd.tail"
+    - "/etc/update-motd.d/99-footer"
+  become: yes
+
