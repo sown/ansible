@@ -1,0 +1,12 @@
+# Install Utilities to Host
+- name: Install utility packages
+  apt:
+    name:
+      - curl
+      - dnsutils
+      - git
+      - strace
+      - tmux
+      - vim
+    state: present
+  become: yes

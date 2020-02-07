@@ -5,3 +5,4 @@
 - hosts: all
   roles:
     - sown-common
+  tags: common
