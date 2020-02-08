@@ -7,3 +7,36 @@ nrpe_allowed_ips:
   - 10.5.0.215  # Monitor 2
   - 152.78.103.187  # Monitor 2
   - 2001:630:d0:f700::215  # Monitor 2
+nrpe_checks:
+  users:
+    check: "/usr/lib/nagios/plugins/check_users"
+    arguments: "-w 10 -c 20"
+  load:
+    check: "/usr/lib/nagios/plugins/check_load"
+    arguments: "-w 15,10,5 -c 30,25,20"
+  total_procs:
+    check: "/usr/lib/nagios/plugins/check_procs"
+    arguments: "-w 250 -c 300"
+  zombie_procs:
+    check: "/usr/lib/nagios/plugins/check_procs"
+    arguments: "-w 5 -c 10 -s Z"
+  nrpe:
+    check: "/usr/lib/nagios/plugins/check_dummy"
+    arguments: "0 'NRPE is running'"
+  debsums:
+    check: "/usr/local/lib/nagios/plugins/check_debsums"
+  uname:
+    check: "/bin/uname"
+    arguments: "-rv"
+  uptime:
+    check: "/usr/bin/uptime"
+  packages:
+    check: "/usr/local/lib/nagios/plugins/check_packages"
+  reboot:
+    check: "/usr/local/lib/nagios/plugins/check_reboot"
+  mail:
+    check: "/usr/local/lib/nagios/plugins/check_mail"
+  internal_ipv6_addresses:
+    check: "/usr/local/lib/nagios/plugins/check_internal_ipv6_addresses"
+  systemd:
+    check: "/usr/local/lib/nagios/plugins/check_systemd"
