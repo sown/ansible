@@ -1,0 +1,18 @@
+zone "sown.org.uk" {
+	type slave;
+	check-names ignore;
+	masters { 10.5.0.239; 2001:630:d0:f700::239; };
+	file "/var/cache/bind/db.sown.org.uk";
+};
+
+zone "5.10.in-addr.arpa" {
+        type slave;
+        masters { 10.5.0.239; 2001:630:d0:f700::239; };
+        file "/var/cache/bind/db.ip4ptr";
+};
+
+zone "7.f.0.d.0.0.0.3.6.0.1.0.0.2.ip6.arpa" {
+	type slave;
+	masters { 10.5.0.239; 2001:630:d0:f700::239; };
+	file "/var/cache/bind/db.ip6ptr";
+};
