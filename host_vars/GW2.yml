@@ -1,2 +1,2 @@
-dhcp_range_start: "10.5.0.144"
-dhcp_range_end: "10.5.0.159"
+pxe_dhcp_range_start: "10.5.0.144"
+pxe_dhcp_range_end: "10.5.0.159"
