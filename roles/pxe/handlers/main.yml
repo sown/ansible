@@ -1,4 +1,4 @@
-- name: Reload dnsmasq      
+- name: Reload dnsmasq
   service:
     name: dnsmasq
     state: reloaded
