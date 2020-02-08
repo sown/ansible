@@ -1,0 +1,16 @@
+- name: Install dnsmasq
+  apt:
+    package: dnsmasq
+    state: present
+
+- name: Configure dnsmasq
+  template:
+    src: dnsmasq.conf.j2
+    dest: /etc/dnsmasq.conf
+  notify:
+    - Reload dnsmasq
+
+- name: Create empty tftp root
+  file:
+    path: /var/tftp
+    state: directory

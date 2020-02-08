@@ -7,3 +7,7 @@
     - sown-common
     - monitored
   tags: common
+- hosts: device_roles_Router
+  roles:
+    - pxe
+  tags: pxe
