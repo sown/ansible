@@ -1,0 +1,8 @@
+plugin: netbox
+api_endpoint: http://netbox.sown.org.uk
+config_context: True
+group_by:
+  - device_roles
+  - tags
+query_filters:
+  - status: active
