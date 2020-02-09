@@ -1,0 +1,104 @@
+#!ipxe
+
+set esc:hex 1b
+set cls ${esc:string}[2J
+set tty ttyS0
+
+set sownversion 1.0.0+ (3fe68)
+
+
+:menu
+echo ${cls}
+menu SOWN iPXE
+item disk Boot from disk
+item ubuntunormal Boot into ubuntu installer (deprecated)
+item ubunturescue Boot into ubuntu installer rescue (deprecated)
+item debiannormal Boot into debian installer
+item debianrescue Boot into debian installer rescue
+item tty Currently selected tty: ${tty}
+item tty0 Use tty0 (physical display)
+item ttyS0 Use ttyS0 (ipmi serial on old servers)
+item ttyS1 Use ttyS1 (ipmi serial on newer servers)
+item blank
+item shell iPXE Shell
+item settings iPXE Settings
+item pxe Chainload iPXE
+item self Reload
+iseq ${version} ${sownversion} && set default disk || set default pxe
+choose --timeout 10000 --default ${default} boot
+goto ${boot}
+
+:disk
+exit 0
+
+:linux
+imgfree
+kernel ${kernel} ${extra} initrd=initrd.gz console=${tty},19200n8 -- console=${tty},19200n8
+initrd ${initrd}
+echo ${cls}
+echo sha1s:
+sha1sum linux initrd.gz
+echo md5s:
+md5sum linux initrd.gz
+echo See https://www.sown.org.uk/wiki/PXE
+echo Please validate sha1sums by hand, y/n
+clear ok
+read ok
+iseq ${ok} y && boot || goto menu
+
+:ubuntubase
+set kernel http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux
+set initrd http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz
+goto linux
+
+:debianbase
+set kernel http://ftp.uk.debian.org/debian/dists/buster/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
+set initrd http://ftp.uk.debian.org/debian/dists/buster/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
+goto linux
+
+:ubuntunormal
+clear extra
+goto ubuntubase
+
+:ubunturescue
+set extra rescue/enable=true
+goto ubuntubase
+
+:debiannormal
+clear extra
+goto debianbase
+
+:debianrescue
+set extra rescue/enable=true
+goto debianbase
+
+:tty
+goto menu
+
+:tty0
+set tty tty0
+goto menu
+
+:ttyS0
+set tty ttyS0
+goto menu
+
+:ttyS1
+set tty ttyS1
+goto menu
+
+:shell
+shell
+goto menu
+
+:pxe
+chain undionly.kpxe
+goto menu
+
+:settings
+config
+goto menu
+
+:self
+chain ${filename}
+goto menu

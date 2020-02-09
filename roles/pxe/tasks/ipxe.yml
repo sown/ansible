@@ -1,0 +1,10 @@
+- name: Add iPXE binary to TFTP root
+  copy:
+    src: undionly.kpxe
+    dest: /var/tftp/undionly.kpxe
+    owner: dnsmasq
+- name: Add SOWN iPXE configuration
+  copy:
+    src: sown.ipxe
+    dest: /var/tftp/sown.ipxe
+    owner: dnsmasq
