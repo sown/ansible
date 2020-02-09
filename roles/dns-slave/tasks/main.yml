@@ -1,0 +1,17 @@
+- name: Install bind
+  apt:
+    name: bind9
+
+- name: Deploy /etc/bind/named.conf.options
+  template:
+    src: files/named.conf.options
+    dest: /etc/bind/named.conf.options
+  notify:
+    - Reload bind
+
+- name: Deploy /etc/bind/named.conf.local
+  copy:
+    src: files/named.conf.local
+    dest: /etc/bind/named.conf.local
+  notify:
+    - Reload bind

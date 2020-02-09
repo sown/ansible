@@ -11,3 +11,7 @@
   roles:
     - pxe
   tags: pxe
+- hosts: device_roles_Router
+  roles:
+    - dns-slave
+  tags: dns-slave
