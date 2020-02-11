@@ -19,7 +19,7 @@
 
 - name: Generate figlet for /etc/motd
   delegate_to: localhost
-  shell: >
+  command: >
     figlet -f /usr/share/figlet/smslant.flf
     "{{ motd_org_name|default('SOWN') }}
     {{ inventory_hostname|lower }}"
