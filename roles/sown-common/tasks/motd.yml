@@ -4,7 +4,6 @@
     name:
       - libpam-modules
       - base-files
-      - figlet
     state: present
   become: true
 
@@ -19,7 +18,7 @@
     - ansible_facts['distribution'] == "Ubuntu"
 
 - name: Generate figlet for /etc/motd
-  shell: printf "Welcome to\n$(figlet -f /usr/share/figlet/smslant.flf SOWN {{ ansible_hostname }})\n\n"
+  local_action: shell echo "Welcome to\n$(figlet -f /usr/share/figlet/smslant.flf {{ motd_org_name|default('SOWN') }} {{ ansible_hostname|replace('sown-', '')|replace('suws-', '') }})"
   register: motd
   changed_when: false
   check_mode: false
@@ -39,4 +38,6 @@
   with_items:
     - "/etc/motd.tail"
     - "/etc/update-motd.d/99-footer"
-  become: true
+    - "/etc/update-motd.d/99-header"
+    - "/etc/update-motd.d/09-sown-machinename"
+  become: true 
