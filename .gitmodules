@@ -1,0 +1,3 @@
+[submodule "roles/monitored/files/monitoring"]
+	path = roles/monitored/files/monitoring
+	url = https://github.com/sown/monitoring.git
