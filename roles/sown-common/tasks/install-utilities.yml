@@ -9,4 +9,4 @@
       - tmux
       - vim
     state: present
-  become: yes
+  become: true

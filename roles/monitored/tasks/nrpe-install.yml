@@ -1,18 +1,18 @@
 # Install NPRE and its config
-# 
+#
 # This does not install all of the checks
 
 - name: Install NRPE server
   apt:
     name: nagios-nrpe-server
     state: present
-  become: yes
+  become: true
 
 - name: Enable NRPE server
   service:
     name: nagios-nrpe-server
-    enabled: yes
-  become: yes
+    enabled: true
+  become: true
 
 - name: Make local NRPE plugins directory
   file:
@@ -21,8 +21,8 @@
     owner: root
     group: root
     mode: 0755
-    recurse: yes
-  become: yes
+    recurse: true
+  become: true
 
 - name: Deploy nrpe_local.cfg
   template:
@@ -33,4 +33,4 @@
     mode: 0644
   notify:
     - Reload Nagios NRPE server
-  become: yes
+  become: true

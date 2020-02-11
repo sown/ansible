@@ -3,7 +3,7 @@ nrpe_allowed_ips:
   - ::1
   - 10.5.0.243  # Monitor
   - 152.78.103.164  # Monitor
-  - 2001:630:d0:f700::243  # Monitor 
+  - 2001:630:d0:f700::243  # Monitor
   - 10.5.0.215  # Monitor 2
   - 152.78.103.187  # Monitor 2
   - 2001:630:d0:f700::215  # Monitor 2

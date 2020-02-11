@@ -6,7 +6,7 @@
       - base-files
       - figlet
     state: present
-  become: yes
+  become: true
 
 - name: Install Ubuntu-specific Packages for MOTD
   apt:
@@ -14,21 +14,21 @@
       - ubuntu-release-upgrader-core
       - update-notifier-common
     state: present
-  become: yes
+  become: true
   when:
     - ansible_facts['distribution'] == "Ubuntu"
 
 - name: Generate figlet for /etc/motd
   shell: printf "Welcome to\n$(figlet -f /usr/share/figlet/smslant.flf SOWN {{ ansible_hostname }})\n\n"
   register: motd
-  changed_when: False
-  check_mode: no
+  changed_when: false
+  check_mode: false
 
 - name: Deploy /etc/motd
   copy:
     content: "{{ motd.stdout }}"
     dest: "/etc/motd"
-  become: yes
+  become: true
 
 # Remove old files
 
@@ -39,5 +39,4 @@
   with_items:
     - "/etc/motd.tail"
     - "/etc/update-motd.d/99-footer"
-  become: yes
-
+  become: true
