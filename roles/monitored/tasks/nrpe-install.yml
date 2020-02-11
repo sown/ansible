@@ -44,12 +44,12 @@
 
 - name: Deploy SOWN checks
   copy:
-    src: "{{item.src}}"
-    dest: /usr/local/lib/nagios/plugins/{{item.path}}
+    src: "{{ item.src }}"
+    dest: /usr/local/lib/nagios/plugins/{{ item.path }}
     owner: root
     group: root
     mode: 0755
-  with_filetree: monitoring/checks
+  with_filetree: monitoring/checks/
 
 - name: Remove old nrpe.d files
   file:
