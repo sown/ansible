@@ -18,8 +18,9 @@
     - ansible_facts['distribution'] == "Ubuntu"
 
 - name: Generate figlet for /etc/motd
-  local_action: >
-    shell echo "Welcome to\n$(figlet -f /usr/share/figlet/smslant.flf
+  delegate_to: localhost
+  shell: >
+    echo "Welcome to\n$(figlet -f /usr/share/figlet/smslant.flf
     {{ motd_org_name|default('SOWN') }}
     {{ ansible_hostname|replace('sown-', '')|replace('suws-', '') }})"
 
