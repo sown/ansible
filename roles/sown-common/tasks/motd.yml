@@ -20,17 +20,17 @@
 - name: Generate figlet for /etc/motd
   delegate_to: localhost
   shell: >
-    echo "Welcome to\n$(figlet -f /usr/share/figlet/smslant.flf
-    {{ motd_org_name|default('SOWN') }}
-    {{ inventory_hostname|lower }})"
+    figlet -f /usr/share/figlet/smslant.flf
+    "{{ motd_org_name|default('SOWN') }}
+    {{ inventory_hostname|lower }}"
 
-  register: motd
+  register: figlet
   changed_when: false
   check_mode: false
 
 - name: Deploy /etc/motd
   copy:
-    content: "{{ motd.stdout }}"
+    content: "Welcome to\n{{ figlet.stdout }}\n"
     dest: "/etc/motd"
   become: true
 
