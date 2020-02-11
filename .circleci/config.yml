@@ -15,4 +15,4 @@ jobs:
           command: yamllint .
       - run:
           name: Run ansible-lint
-          comannd: ansible-lint playbook.yml
+          command: ansible-lint playbook.yml
