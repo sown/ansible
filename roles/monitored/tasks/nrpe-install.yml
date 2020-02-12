@@ -62,6 +62,7 @@
     - nrpe
     - debsums
     - uname
+    - kernel
     - uptime
     - apt
     - mail
