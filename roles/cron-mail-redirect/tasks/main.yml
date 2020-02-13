@@ -1,0 +1,44 @@
+- name: Install postfix
+  apt:
+    name: postfix
+    update_cache: yes
+
+- name: Deploy /etc/postfix/main.cf
+  template:
+    src: main.cf
+    dest: /etc/postfix/main.cf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart postfix
+
+- name: Deploy /etc/aliases
+  copy:
+    src: aliases
+    dest: /etc/aliases
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Instantiate newaliases
+
+- name: Deploy /etc/postfix/generic
+  template:
+    src: postfix_generic
+    dest: /etc/postfix/generic
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Instantiate /etc/postfix/generic
+
+- name: Deploy /etc/mailname
+  copy:
+    dest: /etc/mailname
+    content: "{{ ansible_fqdn }}\n"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart postfix
