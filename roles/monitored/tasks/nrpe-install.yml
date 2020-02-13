@@ -8,6 +8,13 @@
     state: present
   become: true
 
+- name: Install packages for checks
+  apt:
+    name:
+      - debsums
+    state: present
+  become: true
+
 - name: Enable NRPE server
   service:
     name: nagios-nrpe-server
@@ -31,6 +38,36 @@
     owner: root
     group: root
     mode: 0644
+  notify:
+    - Reload Nagios NRPE server
+  become: true
+
+- name: Deploy SOWN checks
+  copy:
+    src: "{{ item.src }}"
+    dest: /usr/local/lib/nagios/plugins/{{ item.path }}
+    owner: root
+    group: root
+    mode: 0755
+  with_filetree: monitoring/checks/ # noqa 104 ansible-lint#582
+
+- name: Remove old nrpe.d files
+  file:
+    path: "/etc/nagios/nrpe.d/{{ item }}.cfg"
+    state: absent
+  with_items:
+    - users
+    - load
+    - processes
+    - nrpe
+    - debsums
+    - uname
+    - kernel
+    - uptime
+    - apt
+    - mail
+    - ipv6
+    - systemd
   notify:
     - Reload Nagios NRPE server
   become: true
