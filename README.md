@@ -1,11 +1,11 @@
-# ansible
+# SOWN Ansible
 Role-based Ansible configuration
 
 ## HOWTO
 ### Cloning the repo
 You need to include submodules to get monitoring scripts as well:
 ```console
-tim@sown-auth2:~$ git clone --recurse-submodules git@github.com:sown/ansible.git
+user@sown-auth2:~$ git clone --recurse-submodules git@github.com:sown/ansible.git
 Cloning into 'ansible'...
 ...
 ```
