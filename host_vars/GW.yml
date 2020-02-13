@@ -1,2 +1,5 @@
 pxe_dhcp_range_start: "10.5.0.128"
 pxe_dhcp_range_end: "10.5.0.143"
+# isol don't allow talking to smtp.soton from uplink IPs
+# so send from the SOWN LAN IP
+postfix_ip: "10.5.0.252"

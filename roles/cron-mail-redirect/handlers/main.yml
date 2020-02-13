@@ -1,0 +1,10 @@
+- name: Instantiate newaliases
+  command: /usr/bin/newaliases
+
+- name: Instantiate /etc/postfix/generic
+  command: /usr/sbin/postmap /etc/postfix/generic
+
+- name: Restart postfix
+  service:
+    name: postfix
+    state: restarted

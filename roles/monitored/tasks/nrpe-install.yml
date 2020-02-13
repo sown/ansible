@@ -49,7 +49,7 @@
     owner: root
     group: root
     mode: 0755
-  with_filetree: monitoring/checks/ # noqa 104 ansible-lint#582
+  with_filetree: monitoring/checks/  # noqa 104 ansible-lint#582
 
 - name: Remove old nrpe.d files
   file:
