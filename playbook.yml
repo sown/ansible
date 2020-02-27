@@ -21,3 +21,7 @@
       tags: pxe
     - role: dns-slave
       tags: dns-slave
+- hosts: tags_Backup
+  roles:
+    - backed-up
+  tags: backed-up

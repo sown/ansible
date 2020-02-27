@@ -58,3 +58,4 @@ New roles should be developed on branches, and changes rolled out to all servers
 - `pxe`
   - `dnsmasq`
   - `ipxe`
+- `backed-up`
