@@ -1,0 +1,54 @@
+- name: Install unattended-upgrades
+  apt:
+    name: unattended-upgrades
+    update_cache: true
+
+- name: Deploy 20auto-upgrades
+  template:
+    src: 20auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Deploy 50unattended-upgrades
+  copy:
+    src: 50unattended-upgrades
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Deploy unattended-upgrade.service
+  copy:
+    src: unattended-upgrade.service
+    dest: /etc/systemd/system/unattended-upgrade.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Deploy unattended-upgrade.timer
+  copy:
+    src: unattended-upgrade.timer
+    dest: /etc/systemd/system/unattended-upgrade.timer
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Disable apt-daily
+  systemd:
+    name: apt-daily.timer
+    state: stopped
+    enabled: false
+
+- name: Disable apt-daily-upgrade
+  systemd:
+    name: apt-daily-upgrade.timer
+    state: stopped
+    enabled: false
+
+- name: Enable unattended-upgrade.timer
+  systemd:
+    name: unattended-upgrade.timer
+    state: started
+    enabled: true

@@ -1,0 +1,2 @@
+# we do manual upgrades on routers
+unattended_upgrades: false

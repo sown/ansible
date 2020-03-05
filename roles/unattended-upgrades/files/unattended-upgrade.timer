@@ -1,0 +1,9 @@
+[Unit]
+Description=Run unattended apt update and upgrade sequentially
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=1d
+
+[Install]
+WantedBy=timers.target

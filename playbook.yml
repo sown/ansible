@@ -8,6 +8,7 @@
   roles:
     - sown-common
     - monitored
+    - {role: unattended-upgrades, tags: unattended-upgrades}
   tags: common
 - hosts: all
   roles:
