@@ -6,19 +6,18 @@
 
 - hosts: all
   roles:
-    - sown-common
-    - monitored
-    - {role: unattended-upgrades, tags: unattended-upgrades}
+    - role: sown-common
+      tags: sown-common
+    - role: monitored
+      tags: monitored
+    - role: unattended-upgrades
+      tags: unattended-upgrades
+    - role: cron-mail-redirect
+      tags: cron-mail-redirect
   tags: common
-- hosts: all
-  roles:
-    - cron-mail-redirect
-  tags: cron-mail-redirect
 - hosts: device_roles_Router
   roles:
-    - pxe
-  tags: pxe
-- hosts: device_roles_Router
-  roles:
-    - dns-slave
-  tags: dns-slave
+    - role: pxe
+      tags: pxe
+    - role: dns-slave
+      tags: dns-slave

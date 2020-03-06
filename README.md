@@ -53,8 +53,8 @@ New roles should be developed on branches, and changes rolled out to all servers
     - `motd`
   - `monitored`
     - `nrpe`
+  - `cron-mail-redirect`
   - `unattended-upgrades`
-- `cron-mail-redirect`
 - `pxe`
   - `dnsmasq`
   - `ipxe`
