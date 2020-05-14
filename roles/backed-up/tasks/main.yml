@@ -11,27 +11,12 @@
   authorized_key:
     user: root
     state: present
-    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDUTbn+rkSv3vSj+T4MOBgLmrW8WPdUyDsV+mjdeKo7OjYXI91TT3bO+nPNl4hdBXhKVVTaylmEn7YW9QGpaqpWpZd2JonBd3FHWcu/vcS1rshqA8XkxeuJSY1QvMNA4THuN9lkgiT+tsIlfp25LSBfhWrHDDuC6geaC2ic3pbjrTw0/8U2AYXyKtEF8CMn7X/IlMBiO8SfUNZUftx+bSGm41wdRKPzAbeBQy6ojtuyinA0QTVyeHw+m1DoN2EQTFkTBnlp3mS1Z4PWs0rXBXYF+p4lJlWCVN8QuunQFRR+duanSgda1vxXfq6KIw1alZio+z8taSupCOO5arxI9Ux root@backup3"
+    key: "{{ lookup('file', 'backup3.pub') }}"
     key_options: 'from="10.5.0.247,2001:630:d0:f700::247"'
 - name: get package facts
   package_facts:
     manager: auto
-- name: "Add mysql backup script"
-  when: "'mysql-server' in ansible_facts.packages or 'mariadb-server' in ansible_facts.packages"
-  copy:
-    src: backup-mysql
-    dest: /etc/backup-scripts/mysql
-    mode: "770"
-- name: "Create mysql config directory"
-  when: "'mysql-server' in ansible_facts.packages or 'mariadb-server' in ansible_facts.packages"
-  file:
-    path: /usr/local/etc/mysql/
-    state: directory
-    mode: "755"
-- name: "Create default mysql config file"
-  when: "'mysql-server' in ansible_facts.packages or 'mariadb-server' in ansible_facts.packages"
-  copy:
-    content: ""
-    dest: /usr/local/etc/mysql/backup.cnf
-    mode: "600"
-    force: no
+- import_tasks: mysql.yml
+  when: >
+     "mysql-server" in ansible_facts.packages or
+     "mariadb-server" in ansible_facts.packages
