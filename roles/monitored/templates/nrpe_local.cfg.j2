@@ -4,6 +4,6 @@ allowed_hosts={{ ",".join(nrpe_allowed_ips) }}
 command_timeout=600
 connection_timeout=900
 
-{% for name, details in nrpe_checks.items() %}
+{% for name, details in nrpe_checks.items()|sort %}
 command[check_{{name}}] = {{details.check}} {{details.arguments|default("")}}
 {% endfor %}
