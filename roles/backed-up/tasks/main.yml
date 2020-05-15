@@ -1,18 +1,24 @@
-- name: "Add backup scripts dir"
+- name: add backup scripts dir
   file:
     path: /etc/backup-scripts
     state: directory
-- name: "Add backup files dir"
+- name: add backup files dir
   file:
     path: /var/lib/backup
     state: directory
     mode: "700"
-- name: "Add backup3 key"
+- name: add backup3 key
   authorized_key:
     user: root
     state: present
     key: "{{ lookup('file', 'backup3.pub') }}"
     key_options: 'from="10.5.0.247,2001:630:d0:f700::247"'
+- name: add backup2 key
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', 'backup2.pub') }}"
+    key_options: 'from="10.5.0.248,2001:630:d0:f700::248"'
 - name: get package facts
   package_facts:
     manager: auto
