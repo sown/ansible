@@ -1,0 +1,4 @@
+#!/bin/bash
+set -eo pipefail
+mysqldump --defaults-extra-file=/usr/local/etc/mysql/backup.cnf --events --ignore-table=mysql.event --all-databases --skip-extended-insert --single-transaction | bzip2 -9 - > /var/lib/backup/mysql.bz2.$$
+mv /var/lib/backup/mysql.bz2.$$ /var/lib/backup/mysql.bz2
