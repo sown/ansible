@@ -55,6 +55,7 @@ New roles should be developed on branches, and changes rolled out to all servers
     - `nrpe`
   - `cron-mail-redirect`
   - `unattended-upgrades`
+  - `server-attributes`
 - `pxe`
   - `dnsmasq`
   - `ipxe`

@@ -14,6 +14,8 @@
       tags: unattended-upgrades
     - role: cron-mail-redirect
       tags: cron-mail-redirect
+    - role: server-attributes
+      tags: server-attributes
   tags: common
 - hosts: device_roles_Router
   roles:
