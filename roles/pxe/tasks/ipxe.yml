@@ -3,8 +3,10 @@
     src: undionly.kpxe
     dest: /var/tftp/undionly.kpxe
     owner: dnsmasq
+    mode: "644"
 - name: Add SOWN iPXE configuration
   copy:
     src: sown.ipxe
     dest: /var/tftp/sown.ipxe
     owner: dnsmasq
+    mode: "644"
