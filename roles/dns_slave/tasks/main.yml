@@ -6,6 +6,7 @@
   template:
     src: files/named.conf.options
     dest: /etc/bind/named.conf.options
+    mode: "644"
   notify:
     - Reload bind
 
@@ -13,5 +14,6 @@
   copy:
     src: files/named.conf.local
     dest: /etc/bind/named.conf.local
+    mode: "644"
   notify:
     - Reload bind

@@ -32,6 +32,7 @@
   copy:
     content: "Welcome to\n{{ figlet.stdout }}\n"
     dest: "/etc/motd"
+    mode: "644"
   become: true
 
 # Remove old files

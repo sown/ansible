@@ -2,6 +2,7 @@
   file:
     path: /etc/backup-scripts
     state: directory
+    mode: "0755"
 - name: add backup files dir
   file:
     path: /var/lib/backup

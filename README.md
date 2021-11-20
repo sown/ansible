@@ -48,14 +48,14 @@ New roles should be developed on branches, and changes rolled out to all servers
 ## Tags
 
 - `common`
-  - `sown-common`
+  - `sown_common`
     - `utilities`
     - `motd`
   - `monitored`
     - `nrpe`
-  - `cron-mail-redirect`
-  - `unattended-upgrades`
+  - `cron_mail_redirect`
+  - `unattended_upgrades`
 - `pxe`
   - `dnsmasq`
   - `ipxe`
-- `backed-up`
+- `backed_up`
