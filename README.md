@@ -3,6 +3,13 @@ Role-based Ansible configuration
 
 ## Usage
 
+### Getting your own copy of ansible
+The system-wide version of ansible on auth2 is too old for our netbox install, so you'll need to install the newest version via pip. You can do this with:
+```
+python3 -m venv --system-site-packages ~/ansible-venv
+~/ansible-venv/bin/pip3 install ansible
+```
+
 ### Cloning the repo
 
 You need to include submodules to get monitoring scripts as well:
@@ -23,14 +30,14 @@ You can create one through the Netbox admin interface, or steal one from `/home/
 
 This will run everything, but won't make changes, and print a full diffs of changes that would be made.
 ```console
-user@sown-auth2:~/ansible$ sudo -E ansible-playbook -i hosts.yml playbook.yml --diff --check
+user@sown-auth2:~/ansible$ sudo -E ~/ansible-venv/bin/ansible-playbook -i hosts.yml playbook.yml --diff --check
 ```
 Remove `--check` to actually make changes.
 
 ### Running against a single host
 
 ```console
-user@sown-auth2:~/ansible$ sudo -E ansible-playbook -i hosts.yml playbook.yml --diff --check --limit VMS
+user@sown-auth2:~/ansible$ sudo -E ~/ansible-venv/bin/ansible-playbook -i hosts.yml playbook.yml --diff --check --limit VMS
 ```
 You can run this (without `--check`) against a new host to set it up with standard SOWN configuration.
 
@@ -38,7 +45,7 @@ You can run this (without `--check`) against a new host to set it up with standa
 
 It can take a while to run everything, so you can selectively run parts of our ansible configuration via tags. See the documentation below for tags you can use.
 ```console
-user@sown-auth2:~/ansible$ sudo -E ansible-playbook -i hosts.yml playbook.yml --diff --check --tags pxe
+user@sown-auth2:~/ansible$ sudo -E ~/ansible-venv/bin/ansible-playbook -i hosts.yml playbook.yml --diff --check --tags pxe
 ```
 
 ## Working on roles
