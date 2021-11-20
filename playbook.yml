@@ -6,22 +6,22 @@
 
 - hosts: all
   roles:
-    - role: sown-common
-      tags: sown-common
+    - role: sown_common
+      tags: sown_common
     - role: monitored
       tags: monitored
-    - role: unattended-upgrades
-      tags: unattended-upgrades
-    - role: cron-mail-redirect
-      tags: cron-mail-redirect
+    - role: unattended_upgrades
+      tags: unattended_upgrades
+    - role: cron_mail_redirect
+      tags: cron_mail_redirect
   tags: common
 - hosts: device_roles_Router
   roles:
     - role: pxe
       tags: pxe
-    - role: dns-slave
-      tags: dns-slave
+    - role: dns_slave
+      tags: dns_slave
 - hosts: tags_Backup
   roles:
-    - backed-up
-  tags: backed-up
+    - backed_up
+  tags: backed_up
