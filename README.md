@@ -58,6 +58,7 @@ New roles should be developed on branches, and changes rolled out to all servers
   - `sown_common`
     - `utilities`
     - `motd`
+    - `ssh_gateway_auth`
   - `monitored`
     - `nrpe`
   - `cron_mail_redirect`
@@ -66,3 +67,4 @@ New roles should be developed on branches, and changes rolled out to all servers
   - `dnsmasq`
   - `ipxe`
 - `backed_up`
+- `ssh_gateway`
