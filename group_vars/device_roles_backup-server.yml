@@ -1,0 +1,2 @@
+# Backup servers are not accessable from shared access boxes
+add_ssh_gateway_keys: false
