@@ -15,13 +15,13 @@
     - role: cron_mail_redirect
       tags: cron_mail_redirect
   tags: common
-- hosts: device_roles_Router
+- hosts: device_roles_router
   roles:
     - role: pxe
       tags: pxe
     - role: dns_slave
       tags: dns_slave
-- hosts: tags_Backup
+- hosts: tags_backup
   roles:
     - backed_up
   tags: backed_up
