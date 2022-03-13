@@ -66,3 +66,4 @@ New roles should be developed on branches, and changes rolled out to all servers
   - `dnsmasq`
   - `ipxe`
 - `backed_up`
+- `ssh_gateway`

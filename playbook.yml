@@ -25,3 +25,7 @@
   roles:
     - backed_up
   tags: backed_up
+- hosts: device_roles_ssh-gateway
+  roles:
+    - role: ssh_gateway
+      tags: ssh_gateway
