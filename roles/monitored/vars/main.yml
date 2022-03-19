@@ -42,3 +42,5 @@ nrpe_checks:
     check: "/usr/local/lib/nagios/plugins/check_systemd"
   psu:
     check: "/usr/local/lib/nagios/plugins/check_psu"
+  git:
+    check: "/usr/local/lib/nagios/plugins/check_git"
