@@ -19,6 +19,6 @@ jobs:
           yamllint .
 
       - name: Run ansible-lint
-        uses: ansible/ansible-lint-action@master
+        uses: ansible/ansible-lint-action@main
         with:
           targets: "playbook.yml"
