@@ -1,7 +1,7 @@
 - name: Install postfix
   apt:
     name: postfix
-    update_cache: yes
+    update_cache: true
 
 - name: Deploy /etc/postfix/main.cf
   template:

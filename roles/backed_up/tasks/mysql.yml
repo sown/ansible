@@ -13,4 +13,4 @@
     content: ""
     dest: /usr/local/etc/mysql/backup.cnf
     mode: "600"
-    force: no
+    force: false
