@@ -6,4 +6,5 @@
     key: "{{ lookup('file', item.key) }}"
   with_items:
     - key: "sown-auth2.pub"
+    - key: "sown-login.pub"
   when: add_ssh_gateway_keys is undefined or add_ssh_gateway_keys
