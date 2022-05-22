@@ -50,24 +50,3 @@
     group: root
     mode: 0755
   with_filetree: monitoring/checks/  # noqa 104 ansible-lint#582
-
-- name: Remove old nrpe.d files
-  file:
-    path: "/etc/nagios/nrpe.d/{{ item }}.cfg"
-    state: absent
-  with_items:
-    - users
-    - load
-    - processes
-    - nrpe
-    - debsums
-    - uname
-    - kernel
-    - uptime
-    - apt
-    - mail
-    - ipv6
-    - systemd
-  notify:
-    - Reload Nagios NRPE server
-  become: true
