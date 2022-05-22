@@ -2,7 +2,7 @@
 
 set -e
 
-PATH=${PWD}/env/bin:${PATH}
+PATH=${PWD}/venv/bin:${PATH}
 
 set -x
 
