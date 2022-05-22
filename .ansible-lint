@@ -1,0 +1,7 @@
+skip_list:
+  - fqcn-builtins
+  - yaml
+
+exclude_paths:
+  - galaxy_roles/
+  - galaxy_collections/

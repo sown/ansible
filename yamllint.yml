@@ -1,0 +1,12 @@
+extends: default
+
+ignore: |
+  venv
+rules:
+  document-start: disable
+  truthy: disable
+  quoted-strings:
+    quote-type: double
+    required: false
+  line-length:
+    max: 160
