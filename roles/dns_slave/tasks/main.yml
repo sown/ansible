@@ -3,8 +3,8 @@
     name: bind9
 
 - name: Deploy /etc/bind/named.conf.options
-  template:
-    src: files/named.conf.options
+  file:
+    src: named.conf.options
     dest: /etc/bind/named.conf.options
     mode: "644"
   notify:

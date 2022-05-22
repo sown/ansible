@@ -5,7 +5,7 @@
 
 - name: Deploy /etc/postfix/main.cf
   template:
-    src: main.cf
+    src: main.cf.j2
     dest: /etc/postfix/main.cf
     owner: root
     group: root
@@ -25,7 +25,7 @@
 
 - name: Deploy /etc/postfix/generic
   template:
-    src: postfix_generic
+    src: postfix_generic.j2
     dest: /etc/postfix/generic
     owner: root
     group: root
