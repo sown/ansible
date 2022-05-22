@@ -1,0 +1,3 @@
+---
+- name: Setup ssh
+  import_tasks: install_lxd.yml

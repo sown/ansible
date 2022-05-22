@@ -15,6 +15,10 @@
     - role: cron_mail_redirect
       tags: cron_mail_redirect
   tags: common
+- hosts: device_roles_lxd-host
+  roles:
+    - role: lxd_host
+      tags: lxd_host
 - hosts: device_roles_router
   roles:
     - role: pxe

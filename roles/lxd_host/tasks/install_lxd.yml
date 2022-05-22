@@ -1,0 +1,5 @@
+---
+- name: install LXD
+  apt:
+    name: lxd
+    state: present
