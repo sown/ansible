@@ -4,10 +4,10 @@ Role-based Ansible configuration
 ## Usage
 
 ### Getting your own copy of ansible
-The system-wide version of ansible on auth2 is too old for our netbox install, so you'll need to install the newest version via pip. You can do this with:
+You must install the exact version of ansible we are using:
 ```
-python3 -m venv --system-site-packages ~/ansible-venv
-~/ansible-venv/bin/pip3 install ansible
+python3 -m venv venv
+./venv/bin/pip3 install -r requirements.txt
 ```
 
 ### Cloning the repo
