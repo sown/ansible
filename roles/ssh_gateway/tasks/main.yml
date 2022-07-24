@@ -3,3 +3,9 @@
   import_tasks: ssh.yml
 - name: Setup ansible requirements
   import_tasks: ansible.yml
+- name: Install packages for SOWN admins
+  apt:
+    name:
+      - ipmitool
+    state: present
+  become: true
