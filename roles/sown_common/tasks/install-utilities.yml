@@ -5,6 +5,7 @@
       - curl
       - dnsutils
       - git
+      - sl
       - strace
       - tmux
       - vim
