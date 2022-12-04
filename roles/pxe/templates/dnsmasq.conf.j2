@@ -2,7 +2,7 @@
 port=0
 
 #dhcp on sown lan only
-interface=eth0
+interface=eth3
 dhcp-range={{pxe_dhcp_range_start}},{{pxe_dhcp_range_end}},1h
 dhcp-option=6,10.5.0.254 # dns
 dhcp-option=3,10.5.0.254 # def gw
