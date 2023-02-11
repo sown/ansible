@@ -6,8 +6,4 @@ group_by:
   - tags
 query_filters:
   - status: active
-  - role: virtual-machine-server
-  - role: router
-  - role: backup-server
-  - role: server
-  - role: ssh-gateway
+  - role_cf_is_server: true
