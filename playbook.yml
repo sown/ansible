@@ -29,3 +29,7 @@
   roles:
     - role: ssh_gateway
       tags: ssh_gateway
+- hosts: MARCONI
+  roles:
+    - role: docker
+      tags: docker
