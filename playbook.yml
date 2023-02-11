@@ -40,3 +40,8 @@
   roles:
     - role: ssh_gateway
       tags: ssh_gateway
+- name: Configure marconi
+  hosts: MARCONI
+  roles:
+    - role: docker
+      tags: docker
