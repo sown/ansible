@@ -1,0 +1,78 @@
+# Add RAID monitoring
+#
+# Also installs tools useful for monitoring / managing the RAID array
+# for DELL PERC controllers
+
+- name: Install ncurses (needed for megacli)
+  apt:
+    name: libncurses5
+    state: present
+  become: true
+
+- name: Install rpm2cpio to extract files
+  apt:
+    name: rpm2cpio
+    state: present
+  become: true
+
+# check_raid uses this
+- name: Install megacli
+  # download the zip from broadcom
+  # extract the .rpm
+  # extract the binary out of it and drop it in /usr/local
+  shell: > # noqa: command-instead-of-module
+    set -o pipefail &&
+    wget -q -O - https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/8-07-14_MegaCLI.zip
+    | busybox unzip -p - Linux/MegaCli-8.07.14-1.noarch.rpm
+    | rpm2cpio -
+    | cpio --quiet -i --to-stdout ./opt/MegaRAID/MegaCli/MegaCli64 > /usr/local/sbin/megacli
+    && chmod +x /usr/local/sbin/megacli
+  args:
+    creates: /usr/local/sbin/megacli
+    executable: /bin/bash
+  become: true
+
+# nicer dell CLI for admin use
+- name: Install perccli
+  # download the tar from dell
+  # extract the .deb (which is broken)
+  # extract the binaries from it
+  shell: > # noqa: command-instead-of-module
+    set -o pipefail &&
+    wget -q -O - https://dl.dell.com/FOLDER07815522M/1/PERCCLI_7.1910.00_A12_Linux.tar.gz
+    | tar -zxOf - PERCCLI_7.1910.00_A12_Linux/perccli_007.1910.0000.0000_all.deb
+    | dpkg --fsys-tarfile -
+    | tar -xO -f - ./opt/MegaRAID/perccli/perccli64 > /usr/local/sbin/perccli
+    && chmod +x /usr/local/sbin/perccli
+  args:
+    creates: /usr/local/sbin/perccli
+    executable: /bin/bash
+  become: true
+
+- name: Install nagios contrib plugins for check_raid
+  apt:
+    name: nagios-plugins-contrib
+    install_recommends: false
+    state: present
+  become: true
+
+- name: Add check_raid sudo config
+  copy:
+    dest: /etc/sudoers.d/check_raid
+    mode: 0644
+    content: |
+      User_Alias CHECK_RAID=nagios
+      Defaults:CHECK_RAID !requiretty
+      CHECK_RAID ALL=(root) NOPASSWD: /usr/local/sbin/megacli -PDList -aALL -NoLog
+      CHECK_RAID ALL=(root) NOPASSWD: /usr/local/sbin/megacli -LdInfo -Lall -aALL -NoLog
+      CHECK_RAID ALL=(root) NOPASSWD: /usr/local/sbin/megacli -AdpBbuCmd -GetBbuStatus -aALL -NoLog
+  become: true
+
+- name: Add check-raid to nrpe config
+  copy:
+    dest: /etc/nagios/nrpe.d/check_raid.cfg
+    mode: 0644
+    content: |
+      command[check_raid]=/usr/lib/nagios/plugins/check_raid -p megacli
+  become: true
+  notify: Reload Nagios NRPE server

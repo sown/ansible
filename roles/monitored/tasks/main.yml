@@ -8,3 +8,6 @@
   when:
     - "ansible_facts['virtualization_role'] in ('NA', 'host')"  # physical machines
     - "psu_monitoring|default(true)"  # we allow opting out of this eg for single psu machines
+- import_tasks: raid.yml
+  tags: nrpe_raid
+  when: "'tags_raid' in group_names"
