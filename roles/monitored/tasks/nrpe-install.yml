@@ -42,6 +42,17 @@
     - Reload Nagios NRPE server
   become: true
 
+- name: Deploy NRPE IPMI bits TODO move to GW role
+  template:
+    src: nrpe_ipmi.cfg.j2
+    dest: /etc/nagios/nrpe.d/ipmi.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload Nagios NRPE server
+  become: true
+
 - name: Deploy SOWN checks
   copy:
     src: "{{ item.src }}"
