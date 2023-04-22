@@ -1,0 +1,6 @@
+[Match]
+Name=eth0
+
+[Network]
+ConfigureWithoutCarrier=yes
+Address={{gw_mgmt_ip}}/24

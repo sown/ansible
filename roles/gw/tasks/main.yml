@@ -1,0 +1,99 @@
+- name: Deploy sysctls
+  copy:
+    src: sysctls.conf
+    dest: /etc/sysctl.d/sown-gw.conf
+    mode: "644"
+  notify:
+    - Reload sysctls
+- name: Make /opt/sown
+  file:
+    state: directory
+    dest: /opt/sown
+- name: Clone network config
+  git:
+    repo: git@github.com:sown/network.git
+    dest: /opt/sown/network
+- name: Install packages
+  apt:
+    name:
+      - bird2
+      - nftables
+      - git
+      - conntrack
+      - conntrackd
+      - keepalived
+    state: present
+- name: Deploy nft config
+  copy:
+    src: nftables.conf
+    dest: /etc/nftables.conf
+    mode: "644"
+  notify:
+    - Reload nftables
+- name: Make /etc/systemd/system/nftables.service.d
+  file:
+    state: directory
+    dest: /etc/systemd/system/nftables.service.d
+- name: Add nftables sysctl hack
+  copy:
+    src: nft-override.conf
+    dest: /etc/systemd/system/nftables.service.d/sysctl-hack.conf
+    mode: "644"
+- name: Start and enable nftables
+  service:
+    name: nftables
+    state: started
+    enabled: true
+- name: Deploy BIRD config
+  copy:
+    src: bird.conf
+    dest: /etc/bird/bird.conf
+    mode: "644"
+  notify:
+    - Reload bird
+- name: Deploy local BIRD config
+  template:
+    src: bird.local.conf
+    dest: /etc/bird/local.conf
+    force: no # because we update the password by hand afterwards
+    mode: "640"
+    owner: root
+    group: bird
+  notify:
+    - Reload bird
+- name: Deploy conntrackd config
+  template:
+    src: conntrackd.conf
+    dest: /etc/conntrackd/conntrackd.conf
+    mode: "600"
+  notify:
+    - Restart conntrackd
+- name: Deploy keepalived config
+  template:
+    src: keepalived.conf
+    dest: /etc/keepalived/keepalived.conf
+    mode: "600"
+  notify:
+    - Reload keepalived
+- name: Deploy keepalived local config
+  template:
+    src: keepalived.local.conf
+    dest: /etc/keepalived/local.conf
+    mode: "600"
+    force: no
+  notify:
+    - Reload keepalived
+- name: Deploy systemd-network config
+  template:
+    src: "networkd/{{item}}"
+    dest: "/etc/systemd/network/{{item}}"
+    mode: "644"
+  loop:
+    - eth0.network
+    - eth1.network
+    - eth2.network
+    - eth3.network
+    - dmz.network
+    - dmz.netdev
+  notify:
+    - Reload networkd

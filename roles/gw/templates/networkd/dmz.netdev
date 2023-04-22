@@ -1,0 +1,6 @@
+[NetDev]
+Name=dmz
+Kind=vrf
+
+[VRF]
+Table=100

@@ -1,0 +1,10 @@
+# uplink to isolutions
+[Match]
+Name=eth2
+
+[Network]
+ConfigureWithoutCarrier=yes
+Address={{gw_uplink_ip_v4}}/29
+Address={{gw_uplink_ip_v6}}/64
+Gateway=152.78.103.233
+Gateway=fe80::505:254
