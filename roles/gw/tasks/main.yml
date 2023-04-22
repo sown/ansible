@@ -55,7 +55,7 @@
   template:
     src: bird.local.conf
     dest: /etc/bird/local.conf
-    force: no # because we update the password by hand afterwards
+    force: no  # because we update the password by hand afterwards
     mode: "640"
     owner: root
     group: bird
