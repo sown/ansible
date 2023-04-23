@@ -9,10 +9,12 @@
   file:
     state: directory
     dest: /opt/sown
+    mode: "755"
 - name: Clone network config
   git:
     repo: git@github.com:sown/network.git
     dest: /opt/sown/network
+    update: false  # noqa: git-latest
 - name: Install packages
   apt:
     name:
@@ -34,6 +36,7 @@
   file:
     state: directory
     dest: /etc/systemd/system/nftables.service.d
+    mode: "755"
 - name: Add nftables sysctl hack
   copy:
     src: nft-override.conf
@@ -85,8 +88,8 @@
     - Reload keepalived
 - name: Deploy systemd-network config
   template:
-    src: "networkd/{{item}}"
-    dest: "/etc/systemd/network/{{item}}"
+    src: "networkd/{{ item }}"
+    dest: "/etc/systemd/network/{{ item }}"
     mode: "644"
   loop:
     - eth0.network
