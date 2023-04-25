@@ -11,4 +11,5 @@ options {
 	auth-nxdomain no;    # conform to RFC1035
 	listen-on { any; };
 	listen-on-v6 { any; };
+	dnssec-validation no; # UoS resolvers don't appear to support dnssec :(
 };
