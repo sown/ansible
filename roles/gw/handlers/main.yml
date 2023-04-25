@@ -22,3 +22,7 @@
   service:
     name: systemd-networkd
     state: reloaded
+- name: Reload Nagios NRPE server
+  service:
+    name: nagios-nrpe-server
+    state: reloaded
