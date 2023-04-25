@@ -1,2 +1,4 @@
 # Backup servers are not accessable from shared access boxes
 add_ssh_gateway_keys: false
+# Servers are only single PSU
+psu_monitoring: false

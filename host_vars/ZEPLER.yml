@@ -1,3 +1,4 @@
 # this box is in a strange state with backports
 # don't do unattended upgrades
 unattended_upgrades: false
+psu_monitoring: false
