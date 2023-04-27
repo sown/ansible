@@ -1,0 +1,28 @@
+- name: Reload sysctls
+  service:
+    name: systemd-sysctl
+    state: restarted
+- name: Reload nftables
+  service:
+    name: nftables
+    state: reloaded
+- name: Reload bird
+  service:
+    name: bird
+    state: reloaded
+- name: Restart conntrackd
+  service:
+    name: conntrackd
+    state: restarted
+- name: Reload keepalived
+  service:
+    name: keepalived
+    state: reloaded
+- name: Reload networkd
+  service:
+    name: systemd-networkd
+    state: reloaded
+- name: Reload Nagios NRPE server
+  service:
+    name: nagios-nrpe-server
+    state: reloaded

@@ -3,7 +3,7 @@
     name: bind9
 
 - name: Deploy /etc/bind/named.conf.options
-  file:
+  copy:
     src: named.conf.options
     dest: /etc/bind/named.conf.options
     mode: "644"

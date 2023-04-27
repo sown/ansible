@@ -1,0 +1,5 @@
+[Match]
+Name=dmz
+
+[Link]
+ActivationPolicy=up
