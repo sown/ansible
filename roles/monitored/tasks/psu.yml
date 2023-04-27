@@ -1,0 +1,14 @@
+- name: Install ipmitool (for check_psu)
+  apt:
+    name: ipmitool
+    state: present
+  become: true
+- name: Add check_psu sudo config
+  copy:
+    dest: /etc/sudoers.d/check_psu
+    mode: "644"
+    content: |
+      Defaults:nagios !requiretty
+      nagios ALL=(root) NOPASSWD: /usr/bin/ipmitool -c sdr type Power\ Supply
+      nagios ALL=(root) NOPASSWD: /usr/bin/ipmitool -c sdr type Current
+      nagios ALL=(root) NOPASSWD: /usr/bin/ipmitool -c sdr type Voltage
