@@ -16,7 +16,7 @@ nrpe_checks:
     arguments: "-w 15,10,5 -c 30,25,20"
   total_procs:
     check: "/usr/lib/nagios/plugins/check_procs"
-    arguments: "-w 250 -c 300"
+    arguments: "-k -w 100 -c 150"
   zombie_procs:
     check: "/usr/lib/nagios/plugins/check_procs"
     arguments: "-w 5 -c 10 -s Z"
