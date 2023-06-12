@@ -25,10 +25,10 @@
     wget -q -O - https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/8-07-14_MegaCLI.zip
     | busybox unzip -p - Linux/MegaCli-8.07.14-1.noarch.rpm
     | rpm2cpio -
-    | cpio --quiet -i --to-stdout ./opt/MegaRAID/MegaCli/MegaCli64 > /usr/local/sbin/megacli
-    && chmod +x /usr/local/sbin/megacli
+    | cpio --quiet -i --to-stdout ./opt/MegaRAID/MegaCli/MegaCli64 > /usr/local/bin/megacli
+    && chmod +x /usr/local/bin/megacli
   args:
-    creates: /usr/local/sbin/megacli
+    creates: /usr/local/bin/megacli
     executable: /bin/bash
   become: true
 
@@ -63,9 +63,9 @@
     content: |
       User_Alias CHECK_RAID=nagios
       Defaults:CHECK_RAID !requiretty
-      CHECK_RAID ALL=(root) NOPASSWD: /usr/local/sbin/megacli -PDList -aALL -NoLog
-      CHECK_RAID ALL=(root) NOPASSWD: /usr/local/sbin/megacli -LdInfo -Lall -aALL -NoLog
-      CHECK_RAID ALL=(root) NOPASSWD: /usr/local/sbin/megacli -AdpBbuCmd -GetBbuStatus -aALL -NoLog
+      CHECK_RAID ALL=(root) NOPASSWD: /usr/local/bin/megacli -PDList -aALL -NoLog
+      CHECK_RAID ALL=(root) NOPASSWD: /usr/local/bin/megacli -LdInfo -Lall -aALL -NoLog
+      CHECK_RAID ALL=(root) NOPASSWD: /usr/local/bin/megacli -AdpBbuCmd -GetBbuStatus -aALL -NoLog
   become: true
 
 - name: Add check-raid to nrpe config
