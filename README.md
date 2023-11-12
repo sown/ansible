@@ -68,3 +68,4 @@ New roles should be developed on branches, and changes rolled out to all servers
   - `ipxe`
 - `backed_up`
 - `ssh_gateway`
+- `suws_webserver`

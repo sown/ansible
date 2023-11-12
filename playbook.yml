@@ -45,3 +45,5 @@
   roles:
     - role: docker
       tags: docker
+    - role: suws_webserver
+      tags: suws_webserver
