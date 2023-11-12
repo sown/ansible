@@ -11,4 +11,4 @@
       line: "PasswordAuthentication no"
     - regexp: "^#?PermitRootLogin"
       line: "PermitRootLogin prohibit-password"
-  notify: restart ssh
+  notify: Restart ssh
