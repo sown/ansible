@@ -21,16 +21,16 @@
   delegate_to: localhost
   command: >
     figlet -f /usr/share/figlet/smslant.flf
-    "{{ motd_org_name|default('SOWN') }}
-    {{ inventory_hostname|lower }}"
+    "{{ motd_org_name | default('SOWN') }}
+    {{ inventory_hostname | lower }}"
 
-  register: figlet
+  register: sown_common_figlet
   changed_when: false
   check_mode: false
 
 - name: Deploy /etc/motd
   copy:
-    content: "Welcome to\n{{ figlet.stdout }}\n"
+    content: "Welcome to\n{{ sown_common_figlet.stdout }}\n"
     dest: "/etc/motd"
     mode: "644"
   become: true

@@ -2,9 +2,11 @@
 # It will take a while to run all of this
 # You can restrict how much you run using tags.
 
-- hosts: all
+- name: Run fact gathering
+  hosts: all
 
-- hosts: all
+- name: Configure common roles
+  hosts: all
   roles:
     - role: sown_common
       tags: sown_common
@@ -15,22 +17,26 @@
     - role: cron_mail_redirect
       tags: cron_mail_redirect
   tags: common
-- hosts: device_roles_router
+- name: Configure router roles
+  hosts: device_roles_router
   roles:
     - role: pxe
       tags: pxe
     - role: dns_slave
       tags: dns_slave
 # temp, will be routers once we're done
-- hosts: GW-B32
+- name: Configure GW-B32
+  hosts: GW-B32
   roles:
     - role: gw
       tags: gw
-- hosts: tags_backup
+- name: Configure backups
+  hosts: tags_backup
   roles:
     - backed_up
   tags: backed_up
-- hosts: device_roles_ssh-gateway
+- name: Configure ssh gateways
+  hosts: device_roles_ssh-gateway
   roles:
     - role: ssh_gateway
       tags: ssh_gateway

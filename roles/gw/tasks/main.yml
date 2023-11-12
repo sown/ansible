@@ -14,7 +14,7 @@
   git:
     repo: git@github.com:sown/network.git
     dest: /opt/sown/network
-    update: false  # noqa: git-latest
+    update: false  # noqa: latest
 - name: Install packages
   apt:
     name:

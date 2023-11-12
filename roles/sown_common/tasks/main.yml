@@ -1,9 +1,12 @@
 # Tasks that are common to all hosts
 # For Ubuntu and Debian Hosts only.
 
-- import_tasks: install-utilities.yml
+- name: Configure utilities
+  import_tasks: install-utilities.yml
   tags: utilities
-- import_tasks: motd.yml
+- name: Configure motd
+  import_tasks: motd.yml
   tags: motd
-- import_tasks: ssh-auth.yml
+- name: Configure auth
+  import_tasks: ssh-auth.yml
   tags: ssh_gateway_auth

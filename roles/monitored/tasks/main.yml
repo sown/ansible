@@ -1,13 +1,16 @@
-- import_tasks: nrpe-install.yml
+- name: Configure NRPE
+  import_tasks: nrpe-install.yml
   tags: nrpe
-- name: fetch host details
+- name: Fetch host details
   tags: nrpe_psu
   setup:
-- import_tasks: psu.yml
+- name: Configure PSU checks
+  import_tasks: psu.yml
   tags: nrpe_psu
   when:
     - "ansible_facts['virtualization_role'] in ('NA', 'host')"  # physical machines
     - "psu_monitoring|default(true)"  # we allow opting out of this eg for single psu machines
-- import_tasks: raid.yml
+- name: Configure raid checks
+  import_tasks: raid.yml
   tags: nrpe_raid
   when: "'tags_raid' in group_names"

@@ -1,8 +1,8 @@
 - name: Instantiate newaliases
-  command: /usr/bin/newaliases
+  command: /usr/bin/newaliases  # noqa no-changed-when
 
 - name: Instantiate /etc/postfix/generic
-  command: /usr/sbin/postmap /etc/postfix/generic
+  command: /usr/sbin/postmap /etc/postfix/generic  # noqa no-changed-when
 
 - name: Restart postfix
   service:
