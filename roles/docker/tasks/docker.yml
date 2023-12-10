@@ -1,13 +1,12 @@
 ---
 - name: Install docker dependancies
   apt:
-    name: [
-      "apt-transport-https",
-      "ca-certificates",
-      "curl",
-      "gnupg-agent",
-      "software-properties-common"
-    ]
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
     state: present
 
 - name: Add docker GPG key
@@ -19,9 +18,9 @@
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     state: present
+    update_cache: true
 
 - name: Install docker
   apt:
-    update_cache: true
     name: docker-ce
     state: present
