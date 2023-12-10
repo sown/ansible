@@ -6,8 +6,8 @@
 
 - name: Checkout container configuration
   ansible.builtin.git:
-    repo: "git@github.com:sown/marconi_container_config.git"
-    dest: "/docker"
+    repo: "git@github.com:sown/containers-dev-docker-config.git"
+    dest: "/docker/managed"
     version: master
 
 - name: Setup containers
@@ -15,8 +15,5 @@
     project_src: "{{ item }}"
   with_items:
     # setup utility containers first
-    - "/docker/traefik"
+    - "/docker/managed/traefik"
     # setup remaining containers
-    - "/docker/suws_website_default"
-    - "/docker/suws_wordpress"
-    - "/docker/suws_wiki"

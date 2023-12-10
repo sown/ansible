@@ -40,10 +40,17 @@
   roles:
     - role: ssh_gateway
       tags: ssh_gateway
-- name: Configure marconi
-  hosts: MARCONI
+- name: Configure containers dev
+  hosts: CONTAINERS-1
   roles:
     - role: docker
       tags: docker
-    - role: suws_webserver
-      tags: suws_webserver
+    - role: containers_dev
+      tags: containers_dev
+- name: Configure containers prod
+  hosts: CONTAINERS-2
+  roles:
+    - role: docker
+      tags: docker
+    - role: containers_prod
+      tags: containers_prod

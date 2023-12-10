@@ -1,0 +1,22 @@
+---
+- name: Install git
+  ansible.builtin.apt:
+    name: git
+    state: present
+
+- name: Checkout container configuration
+  ansible.builtin.git:
+    repo: "git@github.com:sown/containers-prod-docker-config.git"
+    dest: "/docker"
+    version: master
+
+- name: Setup containers
+  community.docker.docker_compose:
+    project_src: "{{ item }}"
+  with_items:
+    # setup utility containers first
+    - "/docker/traefik"
+    # setup remaining containers
+    - "/docker/suws_website_default"
+    - "/docker/suws_wordpress"
+    - "/docker/suws_wiki"
