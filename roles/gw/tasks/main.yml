@@ -100,16 +100,6 @@
     - oob.netdev
   notify:
     - Reload networkd
-- name: remove old systemd-network config
-  file:
-    path: "/etc/systemd/network/{{item}}"
-    state: absent
-  loop:
-    - eth0.network
-    - eth1.network
-    - eth2.network
-    - eth3.network
-    - dmz.netdev
 - name: Deploy NRPE IPMI monitoring
   template:
     src: nrpe_ipmi.cfg
