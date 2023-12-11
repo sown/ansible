@@ -1,5 +1,5 @@
 [NetDev]
-Name=dmz
+Name=oob
 Kind=vrf
 
 [VRF]
