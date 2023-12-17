@@ -54,3 +54,10 @@
       tags: docker
     - role: containers_prod
       tags: containers_prod
+- name: Configure containers secure
+  hosts: CONTAINERS-3
+  roles:
+    - role: docker
+      tags: docker
+    - role: containers_secure
+      tags: containers_secure
