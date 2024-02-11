@@ -3,3 +3,11 @@ pxe_dhcp_range_end: "10.5.0.143"
 # isol don't allow talking to smtp.soton from uplink IPs
 # so send from the SOWN LAN IP
 postfix_ip: "10.5.0.252"
+
+gw_sown_ip_v4: "10.5.0.252"
+gw_sown_ip_v6: "2001:630:d0:f700::252"
+gw_uplink_ip_v4: "152.78.103.236"
+gw_uplink_ip_v6: "2001:630:d0:505::1:5032"
+gw_mgmt_ip: "10.5.1.252"
+gw_dmz_ip: "152.78.189.44"
+gw_conntrackd_peer: "152.78.103.237"
