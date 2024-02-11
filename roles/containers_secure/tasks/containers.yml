@@ -11,7 +11,7 @@
     version: master
 
 - name: Setup containers
-  community.docker.docker_compos:
+  community.docker.docker_compose_v2:
     project_src: "{{ item }}"
   with_items:
     # setup utility containers first

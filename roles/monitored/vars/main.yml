@@ -1,4 +1,4 @@
-nrpe_allowed_ips:
+nrpe_allowed_ips:  # noqa var-naming[no-role-prefix]
   - 127.0.0.1
   - ::1
   - 10.5.0.243  # monitor
@@ -7,7 +7,7 @@ nrpe_allowed_ips:
   - 10.5.0.215  # monitor2
   - 152.78.103.187  # monitor2
   - 2001:630:d0:f700::215  # monitor2
-nrpe_checks:
+nrpe_checks:  # noqa var-naming[no-role-prefix]
   users:
     check: "/usr/lib/nagios/plugins/check_users"
     arguments: "-w 10 -c 20"
