@@ -39,7 +39,7 @@
   # extract the binaries from it
   shell: > # noqa: command-instead-of-module
     set -o pipefail &&
-    wget -q -O - https://dl.dell.com/FOLDER07815522M/1/PERCCLI_7.1910.00_A12_Linux.tar.gz
+    wget -U "sown download" -q -O - https://dl.dell.com/FOLDER07815522M/1/PERCCLI_7.1910.00_A12_Linux.tar.gz
     | tar -zxOf - PERCCLI_7.1910.00_A12_Linux/perccli_007.1910.0000.0000_all.deb
     | dpkg --fsys-tarfile -
     | tar -xO -f - ./opt/MegaRAID/perccli/perccli64 > /usr/local/sbin/perccli
