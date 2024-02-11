@@ -92,12 +92,12 @@
     dest: "/etc/systemd/network/{{ item }}"
     mode: "644"
   loop:
-    - eth0.network
-    - eth1.network
-    - eth2.network
-    - eth3.network
+    - mgmt.network
     - dmz.network
-    - dmz.netdev
+    - uplink.network
+    - sown.network
+    - oob.network
+    - oob.netdev
   notify:
     - Reload networkd
 - name: Deploy NRPE IPMI monitoring

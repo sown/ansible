@@ -1,9 +1,0 @@
-# OOB DMZ link
-[Match]
-Name=eth1
-
-[Network]
-ConfigureWithoutCarrier=yes
-Address={{gw_dmz_ip}}/24
-Gateway=152.78.189.254
-VRF=dmz

@@ -1,6 +1,6 @@
 # SOWN LAN
 [Match]
-Name=eth3
+Name=sown
 
 [Network]
 ConfigureWithoutCarrier=yes
