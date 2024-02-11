@@ -7,3 +7,4 @@ ConfigureWithoutCarrier=yes
 Address={{gw_sown_ip_v4}}/24
 Address={{gw_sown_ip_v6}}/64
 DNS=2001:630:d0:f700::254
+Domains=sown.org.uk
