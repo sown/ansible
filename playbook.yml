@@ -24,10 +24,6 @@
       tags: pxe
     - role: dns_slave
       tags: dns_slave
-# temp, will be routers once we're done
-- name: Configure GW-B32
-  hosts: GW-B32
-  roles:
     - role: gw
       tags: gw
 - name: Configure backups
