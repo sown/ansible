@@ -20,3 +20,5 @@
     - "/docker/suws_website_default"
     - "/docker/suws_wordpress"
     - "/docker/suws_wiki"
+    - "/docker/prometheus"
+    - "/docker/grafana"
