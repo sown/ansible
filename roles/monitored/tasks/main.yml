@@ -18,4 +18,7 @@
   import_tasks: temperature.yml
   tags: nrpe_temperature
   when: "ansible_facts['virtualization_role'] in ('NA', 'host')"  # physical machines
-
+- name: Configure conntrackd checks
+  import_tasks: conntrackd.yml
+  tags: nrpe_conntrackd
+  when: "gw_conntrackd_peer is defined"  # anything that has a conntrackd peer must be running it
