@@ -3,4 +3,3 @@
     name: lm-sensors
     state: present
   become: true
-
