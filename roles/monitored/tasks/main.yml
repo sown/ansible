@@ -21,4 +21,4 @@
 - name: Configure conntrackd checks
   import_tasks: conntrackd.yml
   tags: nrpe_conntrackd
-  when: "gw_conntrackd_peer is defined"  # anything that has a conntrackd peer must be running it
+  when: "'device_roles_router' in group_names"
