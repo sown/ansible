@@ -14,3 +14,11 @@
   import_tasks: raid.yml
   tags: nrpe_raid
   when: "'tags_raid' in group_names"
+- name: Configure temperature checks
+  import_tasks: temperature.yml
+  tags: nrpe_temperature
+  when: "ansible_facts['virtualization_role'] in ('NA', 'host')"  # physical machines
+- name: Configure conntrackd checks
+  import_tasks: conntrackd.yml
+  tags: nrpe_conntrackd
+  when: "'device_roles_router' in group_names"

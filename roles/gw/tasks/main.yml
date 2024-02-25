@@ -68,7 +68,7 @@
   template:
     src: conntrackd.conf
     dest: /etc/conntrackd/conntrackd.conf
-    mode: "600"
+    mode: "644"
   notify:
     - Restart conntrackd
 - name: Deploy keepalived config

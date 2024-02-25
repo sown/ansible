@@ -42,5 +42,14 @@ nrpe_checks:
     check: "/usr/local/lib/nagios/plugins/check_systemd"
   psu:
     check: "/usr/local/lib/nagios/plugins/check_psu"
+  temp:
+    check: "/usr/local/lib/nagios/plugins/check_temp"
+    arguments: "-w 50 -c 60"
   git:
     check: "/usr/local/lib/nagios/plugins/check_git"
+  conntrackd:
+    check: "/usr/local/lib/nagios/plugins/check_conntrackd"
+    arguments: "70 95"
+  keepalived:
+    check: "/usr/lib/nagios/plugins/check_procs"
+    arguments: "-w 2:2 -c 1:2 -C keepalived"
