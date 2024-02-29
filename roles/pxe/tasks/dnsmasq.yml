@@ -6,7 +6,7 @@
 - name: Configure dnsmasq
   template:
     src: dnsmasq.conf.j2
-    dest: /etc/dnsmasq.conf
+    dest: /etc/dnsmasq.d/sown.conf
     mode: "644"
   notify:
     - Reload dnsmasq
