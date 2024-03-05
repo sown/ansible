@@ -1,6 +1,6 @@
 # uplink to isolutions
 [Match]
-Name=eth2
+Name=uplink
 
 [Network]
 ConfigureWithoutCarrier=yes

@@ -1,0 +1,5 @@
+- name: Install lm-sensors (for check_temp)
+  apt:
+    name: lm-sensors
+    state: present
+  become: true

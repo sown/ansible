@@ -1,5 +1,9 @@
+# OOB DMZ link
 [Match]
 Name=dmz
 
-[Link]
-ActivationPolicy=up
+[Network]
+ConfigureWithoutCarrier=yes
+Address={{gw_dmz_ip}}/24
+Gateway=152.78.189.254
+VRF=oob

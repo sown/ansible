@@ -42,5 +42,17 @@ nrpe_checks:  # noqa var-naming[no-role-prefix]
     check: "/usr/local/lib/nagios/plugins/check_systemd"
   psu:
     check: "/usr/local/lib/nagios/plugins/check_psu"
+  temp:
+    check: "/usr/local/lib/nagios/plugins/check_temp"
+    arguments: "-w 50 -c 60"
   git:
     check: "/usr/local/lib/nagios/plugins/check_git"
+  conntrackd:
+    check: "/usr/local/lib/nagios/plugins/check_conntrackd"
+    arguments: "70 95"
+  keepalived:
+    check: "/usr/lib/nagios/plugins/check_procs"
+    arguments: "-w 2:2 -c 1:2 -C keepalived"
+  disks:
+    check: "/usr/lib/nagios/plugins/check_disk"
+    arguments: "-w 20% -c 10% -X tmpfs -X overlay -X devtmpfs -x /tmp -x /var/tmp"
