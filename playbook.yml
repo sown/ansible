@@ -36,3 +36,24 @@
   roles:
     - role: ssh_gateway
       tags: ssh_gateway
+- name: Configure containers dev
+  hosts: CONTAINERS-1
+  roles:
+    - role: docker
+      tags: docker
+    - role: containers_dev
+      tags: containers_dev
+- name: Configure containers prod
+  hosts: CONTAINERS-2
+  roles:
+    - role: docker
+      tags: docker
+    - role: containers_prod
+      tags: containers_prod
+- name: Configure containers secure
+  hosts: CONTAINERS-3
+  roles:
+    - role: docker
+      tags: docker
+    - role: containers_secure
+      tags: containers_secure
