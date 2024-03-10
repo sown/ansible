@@ -1,22 +1,31 @@
 # SOWN Ansible
-Role-based Ansible configuration
+
+This is the ansible playbook for SOWN.
+
+It contains a number of roles and applies them to hosts according to information from our
+Netbox server.
 
 ## Usage
-
-### Getting your own copy of ansible
-You must install the exact version of ansible we are using:
-```
-python3 -m venv venv
-./venv/bin/pip3 install -r requirements.txt
-```
 
 ### Cloning the repo
 
 You need to include submodules to get monitoring scripts as well:
 ```console
-user@sown-auth2:~$ git clone --recurse-submodules git@github.com:sown/ansible.git
+$ git clone --recurse-submodules git@github.com:sown/ansible.git
 Cloning into 'ansible'...
 ...
+```
+
+### Installing Dependencies
+
+You must install the exact version of ansible we are using.
+
+The easiest way to do this is using [poetry](https://python-poetry.org/docs/#installing-with-pipx)
+
+Poetry 1.8 or later is required.
+
+```console
+poetry install
 ```
 
 ### Netbox setup
@@ -30,22 +39,23 @@ You can create one through the Netbox admin interface, or steal one from `/home/
 
 This will run everything, but won't make changes, and print a full diffs of changes that would be made.
 ```console
-user@sown-auth2:~/ansible$ sudo -E ~/ansible/venv/bin/ansible-playbook playbook.yml --diff --check
+$ sudo -E ansible-playbook playbook.yml --diff --check
 ```
 Remove `--check` to actually make changes.
 
 ### Running against a single host
 
 ```console
-user@sown-auth2:~/ansible$ sudo -E ~/ansible/venv/bin/ansible-playbook playbook.yml --diff --check --limit VMS
+$ sudo -E ansible-playbook playbook.yml --diff --check --limit VMS
 ```
 You can run this (without `--check`) against a new host to set it up with standard SOWN configuration.
 
 ### Running a single role via tags
 
 It can take a while to run everything, so you can selectively run parts of our ansible configuration via tags. See the documentation below for tags you can use.
+
 ```console
-user@sown-auth2:~/ansible$ sudo -E ~/ansible/venv/bin/ansible-playbook playbook.yml --diff --check --tags pxe
+$ sudo -E ansible-playbook playbook.yml --diff --check --tags pxe
 ```
 
 ## Working on roles
