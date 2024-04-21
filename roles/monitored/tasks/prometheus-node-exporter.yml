@@ -1,0 +1,39 @@
+---
+- name: Install node exporter
+  ansible.builtin.apt:
+    name: prometheus-node-exporter
+    state: present
+    install_recommends: false
+
+- name: Make node exporter config directory
+  file:
+    path: /etc/node_exporter
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Deploy node exporter web config
+  ansible.builtin.copy:
+    src: node_exporter_config.yml
+    dest: /etc/node_exporter/config.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart prometheus node exporter
+
+- name: Modify node exporter defaults config
+  ansible.builtin.lineinfile:
+    path: /etc/default/prometheus-node-exporter
+    regexp: "^ARGS="
+    line: ARGS="--web.config='/etc/node_exporter/config.yml'"
+    state: present
+  notify:
+    - Restart prometheus node exporter
+
+- name: Setup prometheus node exporter service
+  ansible.builtin.service:
+    name: prometheus-node-exporter
+    state: started
+    enabled: true

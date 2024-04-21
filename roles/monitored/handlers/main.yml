@@ -3,3 +3,9 @@
     name: nagios-nrpe-server
     state: reloaded
   become: true
+
+- name: Restart prometheus node exporter
+  service:
+    name: prometheus-node-exporter
+    state: restarted
+  become: true

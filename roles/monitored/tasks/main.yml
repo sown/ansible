@@ -22,3 +22,7 @@
   import_tasks: conntrackd.yml
   tags: nrpe_conntrackd
   when: "'device_roles_router' in group_names"
+- name: Configure Prometheus node exporter
+  import_tasks: prometheus-node-exporter.yml
+  tags: prometheus_node_exporter
+  when: ansible_distribution_version is version('22.04', '>=') and ansible_distribution == 'Ubuntu'
