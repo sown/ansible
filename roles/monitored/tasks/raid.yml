@@ -3,9 +3,9 @@
 # Also installs tools useful for monitoring / managing the RAID array
 # for DELL PERC controllers
 
-- name: Install ncurses (needed for megacli)
+- name: Install patchelf (to modify megacli)
   apt:
-    name: libncurses5
+    name: patchelf
     state: present
   become: true
 
@@ -20,6 +20,7 @@
   # download the zip from broadcom
   # extract the .rpm
   # extract the binary out of it and drop it in /usr/local
+  # patch it to work with modern ncurses
   shell: > # noqa: command-instead-of-module
     set -o pipefail &&
     wget -q -O - https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/8-07-14_MegaCLI.zip
@@ -27,6 +28,7 @@
     | rpm2cpio -
     | cpio --quiet -i --to-stdout ./opt/MegaRAID/MegaCli/MegaCli64 > /usr/local/bin/megacli
     && chmod +x /usr/local/bin/megacli
+    && patchelf --replace-needed libncurses.so.5 libncurses.so.6 /usr/local/bin/megacli
   args:
     creates: /usr/local/bin/megacli
     executable: /bin/bash

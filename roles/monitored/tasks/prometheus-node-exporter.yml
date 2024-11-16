@@ -27,13 +27,17 @@
   ansible.builtin.lineinfile:
     path: /etc/default/prometheus-node-exporter
     regexp: "^ARGS="
-    line: ARGS="--web.config='/etc/node_exporter/config.yml'"
+    line: >
+      {%- if ansible_distribution == "Ubuntu" and ansible_distribution_version is version(24, ">=") -%}
+        ARGS="--web.config.file='/etc/node_exporter/config.yml'"
+      {%- else -%}
+        ARGS="--web.config='/etc/node_exporter/config.yml'"
+      {%- endif -%}
     state: present
   notify:
     - Restart prometheus node exporter
 
-- name: Setup prometheus node exporter service
+- name: Enable prometheus node exporter service
   ansible.builtin.service:
     name: prometheus-node-exporter
-    state: started
     enabled: true
