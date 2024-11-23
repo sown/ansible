@@ -27,3 +27,5 @@ jobs:
         run: poetry install
       - name: Lint
         run: make lint
+        env:
+          NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}
