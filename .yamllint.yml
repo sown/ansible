@@ -1,12 +1,24 @@
 extends: default
 
 ignore: |
+  galaxy_roles
+  galaxy_collections
   venv
+  .venv
+
 rules:
+  braces:
+    max-spaces-inside: 1
+  comments:
+    min-spaces-from-content: 1
+  comments-indentation: false
   document-start: disable
   truthy: disable
   quoted-strings:
     quote-type: double
-    required: false
+    required: only-when-needed
   line-length:
     max: 160
+  octal-values:
+    forbid-explicit-octal: true
+    forbid-implicit-octal: true

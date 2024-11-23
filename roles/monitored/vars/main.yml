@@ -9,50 +9,50 @@ nrpe_allowed_ips:  # noqa var-naming[no-role-prefix]
   - 2001:630:d0:f700::215  # monitor2
 nrpe_checks:  # noqa var-naming[no-role-prefix]
   users:
-    check: "/usr/lib/nagios/plugins/check_users"
-    arguments: "-w 10 -c 20"
+    check: /usr/lib/nagios/plugins/check_users
+    arguments: -w 10 -c 20
   load:
-    check: "/usr/lib/nagios/plugins/check_load"
-    arguments: "-w 15,10,5 -c 30,25,20"
+    check: /usr/lib/nagios/plugins/check_load
+    arguments: -w 15,10,5 -c 30,25,20
   total_procs:
-    check: "/usr/lib/nagios/plugins/check_procs"
-    arguments: "-k -w {{ monitored_warning_total_procs | default(100) }} -c {{ ((monitored_warning_total_procs | default(100)) * 1.2) | int }}"
+    check: /usr/lib/nagios/plugins/check_procs
+    arguments: -k -w {{ monitored_warning_total_procs | default(100) }} -c {{ ((monitored_warning_total_procs | default(100)) * 1.2) | int }}
   zombie_procs:
-    check: "/usr/lib/nagios/plugins/check_procs"
-    arguments: "-w 5 -c 10 -s Z"
+    check: /usr/lib/nagios/plugins/check_procs
+    arguments: -w 5 -c 10 -s Z
   nrpe:
-    check: "/usr/lib/nagios/plugins/check_dummy"
-    arguments: "0 'NRPE is running'"
+    check: /usr/lib/nagios/plugins/check_dummy
+    arguments: 0 'NRPE is running'
   debsums:
-    check: "/usr/local/lib/nagios/plugins/check_debsums"
+    check: /usr/local/lib/nagios/plugins/check_debsums
   uname:
-    check: "/bin/uname"
-    arguments: "-rv"
+    check: /bin/uname
+    arguments: -rv
   uptime:
-    check: "/usr/bin/uptime"
+    check: /usr/bin/uptime
   packages:
-    check: "/usr/local/lib/nagios/plugins/check_packages"
+    check: /usr/local/lib/nagios/plugins/check_packages
   reboot:
-    check: "/usr/local/lib/nagios/plugins/check_reboot"
+    check: /usr/local/lib/nagios/plugins/check_reboot
   mail:
-    check: "/usr/local/lib/nagios/plugins/check_mail"
+    check: /usr/local/lib/nagios/plugins/check_mail
   internal_ipv6_addresses:
-    check: "/usr/local/lib/nagios/plugins/check_internal_ipv6_addresses"
+    check: /usr/local/lib/nagios/plugins/check_internal_ipv6_addresses
   systemd:
-    check: "/usr/local/lib/nagios/plugins/check_systemd"
+    check: /usr/local/lib/nagios/plugins/check_systemd
   psu:
-    check: "/usr/local/lib/nagios/plugins/check_psu"
+    check: /usr/local/lib/nagios/plugins/check_psu
   temp:
-    check: "/usr/local/lib/nagios/plugins/check_temp"
-    arguments: "-w 50 -c 60"
+    check: /usr/local/lib/nagios/plugins/check_temp
+    arguments: -w 50 -c 60
   git:
-    check: "/usr/local/lib/nagios/plugins/check_git"
+    check: /usr/local/lib/nagios/plugins/check_git
   conntrackd:
-    check: "/usr/local/lib/nagios/plugins/check_conntrackd"
-    arguments: "70 95"
+    check: /usr/local/lib/nagios/plugins/check_conntrackd
+    arguments: 70 95
   keepalived:
-    check: "/usr/lib/nagios/plugins/check_procs"
-    arguments: "-w 2:2 -c 1:2 -C keepalived"
+    check: /usr/lib/nagios/plugins/check_procs
+    arguments: -w 2:2 -c 1:2 -C keepalived
   disks:
-    check: "/usr/lib/nagios/plugins/check_disk"
-    arguments: "-w 20% -c 10% -X tmpfs -X overlay -X devtmpfs -X nsfs -x /tmp -x /var/tmp -x /run/lxd_config/9p"
+    check: /usr/lib/nagios/plugins/check_disk
+    arguments: -w 20% -c 10% -X tmpfs -X overlay -X devtmpfs -X nsfs -x /tmp -x /var/tmp -x /run/lxd_config/9p

@@ -9,7 +9,7 @@
     dest: /etc/postfix/main.cf
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify:
     - Restart postfix
 
@@ -19,7 +19,7 @@
     dest: /etc/aliases
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify:
     - Instantiate newaliases
 
@@ -29,7 +29,7 @@
     dest: /etc/postfix/generic
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify:
     - Instantiate /etc/postfix/generic
 
@@ -39,6 +39,6 @@
     content: "{{ ansible_fqdn }}\n"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify:
     - Restart postfix

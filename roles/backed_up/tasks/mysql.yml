@@ -1,14 +1,14 @@
-- name: "Add mysql backup script"
+- name: Add mysql backup script
   copy:
     src: backup-mysql
     dest: /etc/backup-scripts/mysql
     mode: "770"
-- name: "Create mysql config directory"
+- name: Create mysql config directory
   file:
     path: /usr/local/etc/mysql/
     state: directory
     mode: "755"
-- name: "Create default mysql config file"
+- name: Create default mysql config file
   copy:
     content: ""
     dest: /usr/local/etc/mysql/backup.cnf

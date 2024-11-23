@@ -11,7 +11,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Deploy node exporter web config
   ansible.builtin.copy:
@@ -19,14 +19,14 @@
     dest: /etc/node_exporter/config.yml
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify:
     - Restart prometheus node exporter
 
 - name: Modify node exporter defaults config
   ansible.builtin.lineinfile:
     path: /etc/default/prometheus-node-exporter
-    regexp: "^ARGS="
+    regexp: ^ARGS=
     line: >
       {%- if ansible_distribution == "Ubuntu" and ansible_distribution_version is version(24, ">=") -%}
         ARGS="--web.config.file='/etc/node_exporter/config.yml'"

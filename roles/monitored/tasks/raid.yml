@@ -61,7 +61,7 @@
 - name: Add check_raid sudo config
   copy:
     dest: /etc/sudoers.d/check_raid
-    mode: 0644
+    mode: "0644"
     content: |
       User_Alias CHECK_RAID=nagios
       Defaults:CHECK_RAID !requiretty
@@ -73,7 +73,7 @@
 - name: Add check-raid to nrpe config
   copy:
     dest: /etc/nagios/nrpe.d/check_raid.cfg
-    mode: 0644
+    mode: "0644"
     content: |
       command[check_raid]=/usr/lib/nagios/plugins/check_raid -p megacli
   become: true
