@@ -1,0 +1,43 @@
+- name: Install 7zip for extracting ISOs
+  apt:
+    name: 7zip
+- name: Download Ubuntu ISO
+  get_url:
+    url: https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso
+    dest: /var/www/pxe/ubuntu-{{ version }}-live-server-amd64.iso
+    owner: root
+    group: root
+    mode: "644"
+  register: iso_download
+- name: Download Ubuntu ISO checksums # noqa no-handler
+  get_url:
+    url: https://releases.ubuntu.com/{{ version }}/SHA256SUMS
+    dest: /var/www/pxe/ubuntu-{{ version }}-SHA256SUMS
+    owner: root
+    group: root
+    mode: "644"
+  when: iso_download.changed
+- name: Download Ubuntu ISO checksums signature # noqa no-handler
+  get_url:
+    url: https://releases.ubuntu.com/{{ version }}/SHA256SUMS.gpg
+    dest: /var/www/pxe/ubuntu-{{ version }}-SHA256SUMS.gpg
+    owner: root
+    group: root
+    mode: "644"
+  when: iso_download.changed
+- name: Validate Ubuntu ISO checksums signature # noqa no-changed-when no-handler
+  command: gpg --keyring /usr/share/keyrings/ubuntu-archive-keyring.gpg --verify ubuntu-{{ version }}-SHA256SUMS.gpg ubuntu-{{ version }}-SHA256SUMS
+  args:
+    chdir: /var/www/pxe
+  when: iso_download.changed
+- name: Validate Ubuntu ISO checksum # noqa no-changed-when no-handler
+  command: sha256sum --ignore-missing -c ubuntu-{{ version }}-SHA256SUMS
+  args:
+    chdir: /var/www/pxe
+  when: iso_download.changed
+- name: Extract initrd # noqa no-changed-when no-handler
+  shell: 7zz x /var/www/pxe/ubuntu-{{ version }}-live-server-amd64.iso -so casper/initrd > /var/www/pxe/ubuntu-{{ version }}-initrd
+  when: iso_download.changed
+- name: Extract kernel # noqa no-changed-when no-handler
+  shell: 7zz x /var/www/pxe/ubuntu-{{ version }}-live-server-amd64.iso -so casper/vmlinuz > /var/www/pxe/ubuntu-{{ version }}-vmlinuz
+  when: iso_download.changed

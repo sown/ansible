@@ -4,3 +4,13 @@
 - name: Configure ipxe
   import_tasks: ipxe.yml
   tags: ipxe
+- name: Configure nginx
+  import_tasks: nginx.yml
+  tags: nginx
+- name: Configure PXE images
+  include_tasks: ubuntu_image.yml
+  tags: pxe_images
+  loop:
+    - 24.04.1
+  loop_control:
+    loop_var: version
