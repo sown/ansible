@@ -1,27 +1,38 @@
 - name: Configure NRPE
   import_tasks: nrpe-install.yml
   tags: nrpe
+
 - name: Fetch host details
   tags: nrpe_psu
   setup:
+
 - name: Configure PSU checks
   import_tasks: psu.yml
   tags: nrpe_psu
   when:
     - ansible_facts['virtualization_role'] in ('NA', 'host')  # physical machines
     - psu_monitoring|default(true)  # we allow opting out of this eg for single psu machines
+
 - name: Configure raid checks
   import_tasks: raid.yml
   tags: nrpe_raid
   when: "'tags_raid' in group_names"
+
 - name: Configure temperature checks
   import_tasks: temperature.yml
   tags: nrpe_temperature
   when: ansible_facts['virtualization_role'] in ('NA', 'host')  # physical machines
+
 - name: Configure conntrackd checks
   import_tasks: conntrackd.yml
   tags: nrpe_conntrackd
   when: "'device_roles_router' in group_names"
+
+- name: Configure IPMI checks
+  import_tasks: ipmi.yml
+  tags: nrpe_ipmi
+  when: "'device_roles_router' in group_names"
+
 - name: Configure Prometheus node exporter
   import_tasks: prometheus-node-exporter.yml
   tags: prometheus_node_exporter
