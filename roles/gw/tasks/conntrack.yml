@@ -1,0 +1,32 @@
+- name: Install conntrack and keepalived
+  apt:
+    name:
+      - conntrack
+      - conntrackd
+      - keepalived
+    state: present
+
+- name: Deploy conntrackd config
+  template:
+    src: conntrackd.conf
+    dest: /etc/conntrackd/conntrackd.conf
+    mode: "644"
+  notify:
+    - Restart conntrackd
+
+- name: Deploy keepalived config
+  template:
+    src: keepalived.conf
+    dest: /etc/keepalived/keepalived.conf
+    mode: "600"
+  notify:
+    - Reload keepalived
+
+- name: Deploy keepalived local config
+  template:
+    src: keepalived.local.conf
+    dest: /etc/keepalived/local.conf
+    mode: "600"
+    force: no
+  notify:
+    - Reload keepalived

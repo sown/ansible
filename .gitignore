@@ -1,4 +1,5 @@
 venv/
+
 # Created by https://www.gitignore.io/api/vim,code,linux,ansible,windows
 # Edit at https://www.gitignore.io/?templates=vim,code,linux,ansible,windows
 
@@ -77,5 +78,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/vim,code,linux,ansible,windows
+.vscode/
 
+# End of https://www.gitignore.io/api/vim,code,linux,ansible,windows

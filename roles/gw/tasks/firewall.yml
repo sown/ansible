@@ -1,0 +1,30 @@
+- name: Install nftables
+  apt:
+    name:
+      - nftables
+
+- name: Deploy nft config
+  template:
+    src: nftables.conf
+    dest: /etc/nftables.conf
+    mode: "644"
+  notify:
+    - Reload nftables
+
+- name: Make /etc/systemd/system/nftables.service.d
+  file:
+    state: directory
+    dest: /etc/systemd/system/nftables.service.d
+    mode: "755"
+
+- name: Add nftables sysctl hack
+  template:
+    src: nft-override.conf
+    dest: /etc/systemd/system/nftables.service.d/sysctl-hack.conf
+    mode: "644"
+
+- name: Start and enable nftables
+  service:
+    name: nftables
+    state: started
+    enabled: true
