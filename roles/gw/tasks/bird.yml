@@ -4,7 +4,7 @@
       - bird2
 
 - name: Deploy BIRD config
-  copy:
+  template:
     src: bird.conf
     dest: /etc/bird/bird.conf
     mode: "644"

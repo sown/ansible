@@ -1,5 +1,5 @@
 - name: Deploy sysctls
-  copy:
+  template:
     src: sysctls.conf
     dest: /etc/sysctl.d/sown-gw.conf
     mode: "644"

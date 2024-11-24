@@ -4,7 +4,7 @@
       - nftables
 
 - name: Deploy nft config
-  copy:
+  template:
     src: nftables.conf
     dest: /etc/nftables.conf
     mode: "644"
@@ -18,7 +18,7 @@
     mode: "755"
 
 - name: Add nftables sysctl hack
-  copy:
+  template:
     src: nft-override.conf
     dest: /etc/systemd/system/nftables.service.d/sysctl-hack.conf
     mode: "644"
