@@ -1,0 +1,23 @@
+- name: Install bird2
+  apt:
+    name:
+      - bird2
+
+- name: Deploy BIRD config
+  copy:
+    src: bird.conf
+    dest: /etc/bird/bird.conf
+    mode: "644"
+  notify:
+    - Reload bird
+
+- name: Deploy local BIRD config
+  template:
+    src: bird.local.conf
+    dest: /etc/bird/local.conf
+    force: no  # because we update the password by hand afterwards
+    mode: "640"
+    owner: root
+    group: bird
+  notify:
+    - Reload bird
