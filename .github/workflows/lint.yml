@@ -28,4 +28,5 @@ jobs:
       - name: Lint
         run: make lint
         env:
+          ANSIBLE_VAULT_PASSWORD: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
           NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}

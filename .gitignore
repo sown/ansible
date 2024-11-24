@@ -1,5 +1,7 @@
 venv/
 
+etc/vault_secret.local.sh
+
 # Created by https://www.gitignore.io/api/vim,code,linux,ansible,windows
 # Edit at https://www.gitignore.io/?templates=vim,code,linux,ansible,windows
 
