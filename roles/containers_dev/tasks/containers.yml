@@ -6,8 +6,8 @@
 
 - name: Checkout container configuration
   ansible.builtin.git:
-    repo: "git@github.com:sown/containers-dev-docker-config.git"
-    dest: "/docker/managed"
+    repo: git@github.com:sown/containers-dev-docker-config.git
+    dest: /docker/managed
     version: master
 
 - name: Setup containers
@@ -15,5 +15,5 @@
     project_src: "{{ item }}"
   with_items:
     # setup utility containers first
-    - "/docker/managed/traefik"
+    - /docker/managed/traefik
     # setup remaining containers

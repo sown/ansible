@@ -6,8 +6,8 @@
 
 - name: Checkout container configuration
   ansible.builtin.git:
-    repo: "git@github.com:sown/containers-prod-docker-config.git"
-    dest: "/docker"
+    repo: git@github.com:sown/containers-prod-docker-config.git
+    dest: /docker
     version: master
 
 - name: Setup containers
@@ -15,10 +15,10 @@
     project_src: "{{ item }}"
   with_items:
     # setup utility containers first
-    - "/docker/traefik"
+    - /docker/traefik
     # setup remaining containers
-    - "/docker/suws_website_default"
-    - "/docker/suws_wordpress"
-    - "/docker/suws_wiki"
-    - "/docker/prometheus"
-    - "/docker/grafana"
+    - /docker/suws_website_default
+    - /docker/suws_wordpress
+    - /docker/suws_wiki
+    - /docker/prometheus
+    - /docker/grafana

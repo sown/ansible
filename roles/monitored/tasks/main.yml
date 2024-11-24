@@ -8,8 +8,8 @@
   import_tasks: psu.yml
   tags: nrpe_psu
   when:
-    - "ansible_facts['virtualization_role'] in ('NA', 'host')"  # physical machines
-    - "psu_monitoring|default(true)"  # we allow opting out of this eg for single psu machines
+    - ansible_facts['virtualization_role'] in ('NA', 'host')  # physical machines
+    - psu_monitoring|default(true)  # we allow opting out of this eg for single psu machines
 - name: Configure raid checks
   import_tasks: raid.yml
   tags: nrpe_raid
@@ -17,7 +17,7 @@
 - name: Configure temperature checks
   import_tasks: temperature.yml
   tags: nrpe_temperature
-  when: "ansible_facts['virtualization_role'] in ('NA', 'host')"  # physical machines
+  when: ansible_facts['virtualization_role'] in ('NA', 'host')  # physical machines
 - name: Configure conntrackd checks
   import_tasks: conntrackd.yml
   tags: nrpe_conntrackd

@@ -88,8 +88,8 @@
     - Reload keepalived
 - name: Deploy systemd-network config
   template:
-    src: "networkd/{{ item }}"
-    dest: "/etc/systemd/network/{{ item }}"
+    src: networkd/{{ item }}
+    dest: /etc/systemd/network/{{ item }}
     mode: "644"
   loop:
     - mgmt.network
@@ -106,6 +106,6 @@
     dest: /etc/nagios/nrpe.d/ipmi.cfg
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify:
     - Reload Nagios NRPE server

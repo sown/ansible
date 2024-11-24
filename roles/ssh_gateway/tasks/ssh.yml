@@ -5,10 +5,10 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
-    validate: "sshd -T -f %s"
+    validate: sshd -T -f %s
   with_items:
-    - regexp: "^#?PasswordAuthentication"
-      line: "PasswordAuthentication no"
-    - regexp: "^#?PermitRootLogin"
-      line: "PermitRootLogin prohibit-password"
+    - regexp: ^#?PasswordAuthentication
+      line: PasswordAuthentication no
+    - regexp: ^#?PermitRootLogin
+      line: PermitRootLogin prohibit-password
   notify: Restart ssh

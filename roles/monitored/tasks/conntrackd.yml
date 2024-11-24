@@ -1,7 +1,7 @@
 - name: Add check_conntrackd sudo config
   copy:
     dest: /etc/sudoers.d/check_conntrackd
-    mode: 0644
+    mode: "0644"
     content: |
       User_Alias CHECK_CONNTRACKD=nagios
       Defaults:CHECK_CONNTRACKD !requiretty

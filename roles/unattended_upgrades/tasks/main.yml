@@ -9,7 +9,7 @@
     dest: /etc/apt/apt.conf.d/20auto-upgrades
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Deploy 50unattended-upgrades
   copy:
@@ -17,7 +17,7 @@
     dest: /etc/apt/apt.conf.d/50unattended-upgrades
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Deploy unattended-upgrade.service
   copy:
@@ -25,7 +25,7 @@
     dest: /etc/systemd/system/unattended-upgrade.service
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Deploy unattended-upgrade.timer
   copy:
@@ -33,7 +33,7 @@
     dest: /etc/systemd/system/unattended-upgrade.timer
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Disable apt-daily
   systemd:

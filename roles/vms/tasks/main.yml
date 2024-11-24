@@ -4,11 +4,11 @@
     dest: /etc/apt/keyrings/zabbly.asc
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Add incus repo
   apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/zabbly.asc] https://pkgs.zabbly.com/incus/{{ vms_incus_repo_release }} {{ ansible_distribution_release }} main"
+    repo: deb [signed-by=/etc/apt/keyrings/zabbly.asc] https://pkgs.zabbly.com/incus/{{ vms_incus_repo_release }} {{ ansible_distribution_release }} main
 
 - name: Install incus
   apt:
