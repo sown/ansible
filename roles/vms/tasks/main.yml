@@ -13,3 +13,8 @@
 - name: Install incus
   apt:
     name: incus
+
+- name: Uninstall lxd-installer
+  apt:
+    name: lxd-installer
+    state: absent
