@@ -1,0 +1,19 @@
+- name: Install nginx
+  apt:
+    package: nginx
+
+- name: Add nginx vhost
+  copy:
+    src: nginx-vhost
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: "644"
+  notify: Reload nginx
+
+- name: Create webroot
+  file:
+    path: /var/www/pxe
+    owner: root
+    group: root
+    mode: "755"

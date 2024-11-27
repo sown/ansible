@@ -2,3 +2,8 @@
   service:
     name: dnsmasq
     state: reloaded
+
+- name: Reload nginx
+  service:
+    name: nginx
+    state: reloaded
