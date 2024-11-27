@@ -1,111 +1,32 @@
-- name: Deploy sysctls
-  copy:
-    src: sysctls.conf
-    dest: /etc/sysctl.d/sown-gw.conf
-    mode: "644"
-  notify:
-    - Reload sysctls
+- name: Install packages
+  apt:
+    name:
+      - git
+    state: present
+
 - name: Make /opt/sown
   file:
     state: directory
     dest: /opt/sown
     mode: "755"
+
 - name: Clone network config
   git:
     repo: git@github.com:sown/network.git
     dest: /opt/sown/network
     update: false  # noqa: latest
-- name: Install packages
-  apt:
-    name:
-      - bird2
-      - nftables
-      - git
-      - conntrack
-      - conntrackd
-      - keepalived
-    state: present
-- name: Deploy nft config
-  copy:
-    src: nftables.conf
-    dest: /etc/nftables.conf
-    mode: "644"
-  notify:
-    - Reload nftables
-- name: Make /etc/systemd/system/nftables.service.d
-  file:
-    state: directory
-    dest: /etc/systemd/system/nftables.service.d
-    mode: "755"
-- name: Add nftables sysctl hack
-  copy:
-    src: nft-override.conf
-    dest: /etc/systemd/system/nftables.service.d/sysctl-hack.conf
-    mode: "644"
-- name: Start and enable nftables
-  service:
-    name: nftables
-    state: started
-    enabled: true
-- name: Deploy BIRD config
-  copy:
-    src: bird.conf
-    dest: /etc/bird/bird.conf
-    mode: "644"
-  notify:
-    - Reload bird
-- name: Deploy local BIRD config
-  template:
-    src: bird.local.conf
-    dest: /etc/bird/local.conf
-    force: no  # because we update the password by hand afterwards
-    mode: "640"
-    owner: root
-    group: bird
-  notify:
-    - Reload bird
-- name: Deploy conntrackd config
-  template:
-    src: conntrackd.conf
-    dest: /etc/conntrackd/conntrackd.conf
-    mode: "644"
-  notify:
-    - Restart conntrackd
-- name: Deploy keepalived config
-  template:
-    src: keepalived.conf
-    dest: /etc/keepalived/keepalived.conf
-    mode: "600"
-  notify:
-    - Reload keepalived
-- name: Deploy keepalived local config
-  template:
-    src: keepalived.local.conf
-    dest: /etc/keepalived/local.conf
-    mode: "600"
-    force: no
-  notify:
-    - Reload keepalived
-- name: Deploy systemd-network config
-  template:
-    src: networkd/{{ item }}
-    dest: /etc/systemd/network/{{ item }}
-    mode: "644"
-  loop:
-    - mgmt.network
-    - dmz.network
-    - uplink.network
-    - sown.network
-    - oob.network
-    - oob.netdev
-  notify:
-    - Reload networkd
-- name: Deploy NRPE IPMI monitoring
-  template:
-    src: nrpe_ipmi.cfg
-    dest: /etc/nagios/nrpe.d/ipmi.cfg
-    owner: root
-    group: root
-    mode: "0644"
-  notify:
-    - Reload Nagios NRPE server
+
+- name: Setup sysctls
+  include_tasks: sysctl.yml
+
+- name: Setup firewall
+  include_tasks: firewall.yml
+
+- name: Setup bird
+  include_tasks: bird.yml
+
+- name: Setup conntrack
+  include_tasks: conntrack.yml
+
+- name: Setup interfaces
+  include_tasks: interfaces.yml
