@@ -3,6 +3,9 @@
     name:
       - nftables
 
+- name: Include vault variable for nftables
+  include_vars: vault-nft.yml
+
 - name: Deploy nft config
   template:
     src: nftables.conf

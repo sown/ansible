@@ -1,2 +1,5 @@
 # we do manual upgrades on routers
 unattended_upgrades: false
+
+# Monitor IPMI on routers
+monitored_npre_ipmi_monitored: true
