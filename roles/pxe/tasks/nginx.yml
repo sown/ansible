@@ -13,6 +13,7 @@
 
 - name: Create webroot
   file:
+    state: directory
     path: /var/www/pxe
     owner: root
     group: root
