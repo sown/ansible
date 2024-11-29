@@ -1,0 +1,9 @@
+- name: Deploy NRPE IPMI monitoring
+  template:
+    src: nrpe_ipmi.cfg
+    dest: /etc/nagios/nrpe.d/ipmi.cfg
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload Nagios NRPE server

@@ -1,0 +1,7 @@
+- name: Deploy sysctls
+  template:
+    src: sysctls.conf
+    dest: /etc/sysctl.d/sown-gw.conf
+    mode: "644"
+  notify:
+    - Reload sysctls
