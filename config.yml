@@ -58,7 +58,7 @@
     - role: containers_secure
       tags: containers_secure
 - name: Configure VM hosts
-  hosts: VMS-B32-1  # TODO cover all hosts once VMS-B53-1 reinstalled
+  hosts: device_roles_lxd-host
   roles:
     - role: vms
       tags: vms
