@@ -4,6 +4,7 @@
 - name: Download Ubuntu ISO
   get_url:
     url: https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso
+    # it's important we use the original filename, as sha256sum relies on it later
     dest: /var/www/pxe/ubuntu-{{ version }}-live-server-amd64.iso
     owner: root
     group: root
