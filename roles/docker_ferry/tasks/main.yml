@@ -1,0 +1,14 @@
+- name: Checkout ferry-api into /opt/ferry
+  git:
+    repo: https://github.com/trickeydan/ferry-api.git
+    dest: /opt/ferry-api
+    version: 82d5e5e7963ee853827bb07a6dd299ba9d9c6798
+  notify: Restart ferry-service
+
+- name: Install compose file
+  template:
+    src: files/docker-compose.override.yml
+    dest: /opt/ferry-api/docker-compose.override.yml
+    mode: "{{ docker_compose_file_mask }}"
+    owner: "{{ docker_user.name }}"
+  notify: Restart ferry-service

@@ -1,0 +1,19 @@
+timezone = "Europe/London"
+
+[discord]
+token = "{{ docker_kmibot_discord_token }}"
+guild_id = {{ docker_kmibot_discord_guild_id }}
+
+[ferry]
+channel_id = {{ docker_kmibot_discord_ferry_channel_id }}
+api_url = "https://ferry.containers-dev.sown.org.uk/api/"
+api_key = "{{ docker_kmibot_ferry_api_token }}"
+banned_word = "train"
+emoji_reacts = "🚂😠🚇"
+
+[pub]
+weekday = 3  # Thursday
+hour = 20
+minute = 0
+channel_id = {{ docker_kmibot_discord_pub_channel_id }}
+description = "Casual chat and food. All welcome."

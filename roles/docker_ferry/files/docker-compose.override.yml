@@ -1,0 +1,33 @@
+services:
+  nginx:
+    restart: always
+    networks:
+      - traefik
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ferry.rule=Host(`ferry.containers-dev.sown.org.uk`)
+      - traefik.http.services.ferry.loadbalancer.server.port=80
+      - traefik.http.routers.ferry.tls.certresolver=le
+
+  web:
+    restart: always
+    environment:
+      - SQL_DATABASE=ferry
+      - SQL_USER=ferry
+      - SQL_PASSWORD=ferry
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - SECRET_KEY={{ docker_ferry_django_secret_key }}
+      - DISCORD_GUILD={{ docker_ferry_discord_guild_id }}
+      - DISCORD_TOKEN={{ docker_ferry_discord_api_token }}
+      - SSO_OIDC_CONFIGURATION_URL=https://sso.sown.org.uk/application/o/ferry/.well-known/openid-configuration
+      - SSO_OIDC_CLIENT_ID={{ docker_ferry_sso_oidc_client_id }}
+      - SSO_OIDC_CLIENT_SECRET={{ docker_ferry_sso_oidc_client_secret }}
+
+  db:
+    restart: always
+
+networks:
+  traefik:
+    external: true

@@ -1,0 +1,4 @@
+- name: Restart ferry-service  # noqa: no-changed-when
+  command:
+    chdir: /opt/ferry-api
+    cmd: "{{ docker_update_command }}"

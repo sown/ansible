@@ -1,0 +1,4 @@
+- name: Restart KMIBot  # noqa: no-changed-when
+  command:
+    chdir: /opt/kmibot
+    cmd: "{{ docker_update_command }}"
