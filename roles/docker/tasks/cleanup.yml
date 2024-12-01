@@ -1,9 +1,13 @@
+- name: Create install directory
+  file:
+    path: /usr/local/bin/
+    state: directory
+
 - name: Install compose-switch
   get_url:
     url: "{{ docker_compose_url }}"
-    dest: "{{ docker_compose_path }}"
+    dest: /usr/local/bin/docker-compose
     mode: "0755"
-  when: ansible_os_family == 'Ubuntu'
 
 - name: Install python3-requests for ansible.community.docker
   package:

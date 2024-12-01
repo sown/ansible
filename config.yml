@@ -51,3 +51,5 @@
   roles:
     - role: docker
       tags: docker
+    - role: docker_traefik
+      tags: docker-traefik
