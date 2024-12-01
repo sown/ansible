@@ -57,3 +57,5 @@
       tags: docker-ferry
     - role: docker_kmibot
       tags: docker-kmibot
+    - role: docker_kmicms
+      tags: docker-kmicms

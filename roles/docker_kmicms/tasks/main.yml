@@ -1,0 +1,14 @@
+- name: Checkout kmicms into /opt/kmicms
+  git:
+    repo: https://github.com/sown/kmicms.git
+    dest: /opt/kmicms
+    version: 2e97d64038b8ca783f624a6caae83d3b7b9c8e71
+  notify: Restart kmicms
+
+- name: Install compose file
+  template:
+    src: files/docker-compose.override.yml
+    dest: /opt/kmicms/docker-compose.override.yml
+    mode: "{{ docker_compose_file_mask }}"
+    owner: "{{ docker_user.name }}"
+  notify: Restart kmicms

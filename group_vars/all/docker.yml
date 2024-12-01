@@ -9,4 +9,4 @@ docker_compose_directory_mask: "775"
 # Run this task manually, as version comparisons usually fail
 docker_compose_url: https://github.com/docker/compose-switch/releases/latest/download/docker-compose-linux-amd64
 
-docker_update_command: docker-compose pull && docker-compose down && docker-compose rm && docker-compose up -d --build
+docker_update_command: docker-compose pull && docker-compose down && docker-compose rm && docker-compose up --detach --build

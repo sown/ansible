@@ -1,0 +1,4 @@
+- name: Restart kmicms  # noqa: no-changed-when
+  command:
+    chdir: /opt/kmicms
+    cmd: "{{ docker_update_command }}"

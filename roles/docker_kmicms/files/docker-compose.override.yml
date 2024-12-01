@@ -1,0 +1,37 @@
+services:
+  nginx:
+    restart: always
+    networks:
+      - traefik
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.kmicms-staging.rule=Host(`{{ docker_kmicms_hostname }}`)
+      - traefik.http.services.kmicms-staging.loadbalancer.server.port=80
+      - traefik.http.routers.kmicms-staging.tls.certresolver=le
+
+  web:
+    restart: always
+    environment:
+      - REDIS_URL=redis://cache:6379
+      - SQL_DATABASE=wagtail
+      - SQL_USER=wagtail
+      - SQL_PASSWORD=wagtail
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - SECRET_KEY={{ docker_kmicms_django_secret_key }}
+      - SSO_OIDC_CONFIGURATION_URL=https://sso.sown.org.uk/application/o/{{ docker_kmicms_sso_oidc_app_name }}/.well-known/openid-configuration
+      - SSO_OIDC_CLIENT_ID={{ docker_kmicms_sso_oidc_client_id }}
+      - SSO_OIDC_CLIENT_SECRET={{ docker_kmicms_sso_oidc_client_secret }}
+      - SSO_STAFF_GROUP_NAME={{ docker_kmicms_sso_staff_group_name }}
+      - SSO_SUPERUSER_GROUP_NAME={{ docker_kmicms_sso_superuser_group_name }}
+      - NETBOX_API_TOKEN={{ docker_kmi_cms_netbox_api_token }}
+      - RECAPTCHA_PUBLIC_KEY={{ docker_kmicms_recaptcha_public_key }}
+      - RECAPTCHA_PRIVATE_KEY={{ docker_kmicms_recaptcha_private_key }}
+
+  db:
+    restart: always
+
+networks:
+  traefik:
+    external: true
