@@ -26,6 +26,7 @@ providers:
 api:
   dashboard: true
   insecure: true
+  disableDashboardAd: true
 
 certificatesResolvers:
   le:
