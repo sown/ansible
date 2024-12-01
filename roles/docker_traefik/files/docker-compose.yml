@@ -15,7 +15,14 @@ services:
       - traefik.http.routers.traefik.rule=Host(`containers-dev.sown.org.uk`)
       - traefik.http.services.traefik.loadbalancer.server.port=8080
       - traefik.http.routers.traefik.tls.certresolver=le
+      - traefik.http.routers.traefik.service=traefik
       - traefik.http.routers.traefik.middlewares=authentik
+      - traefik.http.routers.traefik-metrics.rule=Host(`containers-1.sown.org.uk`) && PathPrefix(`/metrics`)
+      - traefik.http.services.traefik-metrics.loadbalancer.server.port=8081
+      - traefik.http.routers.traefik-metrics.tls.certresolver=le
+      - traefik.http.routers.traefik-metrics.service=prometheus@internal
+      - traefik.http.routers.traefik-metrics.middlewares=traefik-auth@docker
+      - traefik.http.middlewares.traefik-auth.basicauth.users=prometheus:$$2y$$05$$tarSVOn5jRue/nCuXooDNOaSwFWfG25DE.YuNwMZ.H4siiDEyEtEy
     networks:
       - default
       - traefik
