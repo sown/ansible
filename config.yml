@@ -17,6 +17,7 @@
     - role: cron_mail_redirect
       tags: cron_mail_redirect
   tags: common
+
 - name: Configure router roles
   hosts: device_roles_router
   roles:
@@ -26,39 +27,29 @@
       tags: dns_slave
     - role: gw
       tags: gw
+
 - name: Configure backups
   hosts: tags_backup
   roles:
     - backed_up
   tags: backed_up
+
 - name: Configure ssh gateways
   hosts: device_roles_ssh-gateway
   roles:
     - role: ssh_gateway
       tags: ssh_gateway
-# - name: Configure containers dev
-#   hosts: CONTAINERS-1
-#   roles:
-#     - role: docker
-#       tags: docker
-#     - role: containers_dev
-#       tags: containers_dev
-# - name: Configure containers prod
-#   hosts: CONTAINERS-2
-#   roles:
-#     - role: docker
-#       tags: docker
-#     - role: containers_prod
-#       tags: containers_prod
-# - name: Configure containers secure
-#   hosts: CONTAINERS-3
-#   roles:
-#     - role: docker
-#       tags: docker
-#     - role: containers_secure
-#       tags: containers_secure
+
 - name: Configure VM hosts
   hosts: device_roles_lxd-host
   roles:
     - role: vms
       tags: vms
+
+- name: Configure containers-dev
+  hosts: CONTAINERS-1
+  roles:
+    - role: docker
+      tags: docker
+    - role: docker_traefik
+      tags: docker-traefik

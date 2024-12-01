@@ -1,0 +1,4 @@
+- name: Restart Traefik  # noqa: no-changed-when
+  command:
+    chdir: /opt/traefik
+    cmd: "{{ docker_update_command }}"
