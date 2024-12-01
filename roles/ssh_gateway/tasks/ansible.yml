@@ -9,3 +9,19 @@
       - sshpass
     state: present
   become: true
+
+- name: Store vault passphrase in /root
+  copy:
+    content: "{{ ssh_gateway_ansible_vault_passphrase }}"
+    dest: /root/ansible-vault-passphrase
+    owner: root
+    group: root
+    mode: "600"
+
+- name: Add vault passphrase helper script
+  copy:
+    src: vault-passphrase-helper
+    dest: /usr/local/bin/vault-passphrase-helper
+    owner: root
+    group: root
+    mode: "755"
