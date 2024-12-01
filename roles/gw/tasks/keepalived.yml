@@ -1,0 +1,22 @@
+- name: Install keepalived
+  apt:
+    name:
+      - keepalived
+    state: present
+
+- name: Deploy keepalived config
+  template:
+    src: keepalived.conf
+    dest: /etc/keepalived/keepalived.conf
+    mode: "600"
+  notify:
+    - Reload keepalived
+
+- name: Deploy keepalived local config
+  template:
+    src: keepalived.local.conf
+    dest: /etc/keepalived/local.conf
+    mode: "600"
+    force: no
+  notify:
+    - Reload keepalived
