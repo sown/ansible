@@ -53,3 +53,5 @@
       tags: docker
     - role: docker_traefik
       tags: docker-traefik
+    - role: docker_kmibot
+      tags: docker-kmibot
