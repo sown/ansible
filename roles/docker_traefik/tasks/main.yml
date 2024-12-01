@@ -1,5 +1,5 @@
 - name: Create network
-  docker_network:
+  community.docker.docker_network:
     name: traefik
     internal: true
 
