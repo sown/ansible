@@ -59,3 +59,5 @@
       tags: docker-kmibot
     - role: docker_kmicms
       tags: docker-kmicms
+    - role: docker_netbox
+      tags: docker-netbox
