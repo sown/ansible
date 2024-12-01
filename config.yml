@@ -45,3 +45,9 @@
   roles:
     - role: vms
       tags: vms
+
+- name: Configure containers-dev
+  hosts: CONTAINERS-1
+  roles:
+    - role: docker
+      tags: docker
