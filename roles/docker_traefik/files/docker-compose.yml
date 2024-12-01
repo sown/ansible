@@ -54,6 +54,7 @@ services:
 
   authentik-proxy:
     image: ghcr.io/goauthentik/proxy
+    restart: unless-stopped
     environment:
       - AUTHENTIK_HOST=https://sso.sown.org.uk
       - AUTHENTIK_TOKEN={{ vault_authentik_proxy_token }}
