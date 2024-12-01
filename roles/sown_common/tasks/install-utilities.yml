@@ -11,3 +11,8 @@
       - vim
     state: present
   become: true
+
+- name: Install molly-guard on physical hosts
+  apt:
+    name: molly-guard
+  when: ansible_virtualization_role != 'guest'
