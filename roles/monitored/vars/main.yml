@@ -55,4 +55,4 @@ nrpe_checks:  # noqa var-naming[no-role-prefix]
     arguments: -w 2:2 -c 1:2 -C keepalived
   disks:
     check: /usr/lib/nagios/plugins/check_disk
-    arguments: -w 20% -c 10% -X tmpfs -X overlay -X devtmpfs -X nsfs -x /tmp -x /var/tmp -x /run/lxd_config/9p
+    arguments: -w 20% -c 10% -X tmpfs -X overlay -X devtmpfs -X nsfs -X squashfs -x /tmp -x /var/tmp -x /run/lxd_config/9p
