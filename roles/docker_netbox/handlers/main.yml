@@ -1,0 +1,4 @@
+- name: Restart netbox  # noqa: no-changed-when
+  command:
+    chdir: /opt/netbox
+    cmd: "{{ docker_update_command }}"
