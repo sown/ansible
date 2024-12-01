@@ -1,3 +1,0 @@
----
-- name: Configure containers
-  import_tasks: containers.yml
