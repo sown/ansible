@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOCAL_OVERRIDE_FILE=./etc/vault_secret.local.s
+LOCAL_OVERRIDE_FILE=./etc/vault_secret.local.sh
 LOGIN_HELPER_SCRIPT=/usr/local/bin/vault-passphrase-helper
 
 # script on the login servers
