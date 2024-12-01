@@ -1,8 +1,9 @@
-- name: checkout kmibot into /opt/kmibot
+- name: Checkout kmibot into /opt/kmibot
   git:
     repo: https://github.com/sown/kmibot.git
     dest: /opt/kmibot
     version: c288f25f8224452ecc2641a74bb79177597e53e3
+  notify: Restart KMIBot
 
 - name: Install extra config
   template:
