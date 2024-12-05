@@ -2,7 +2,7 @@
   git:
     repo: https://github.com/sown/kmibot.git
     dest: /opt/kmibot
-    version: dbbfcb651a129cb240f319da09c6a0b7260ba7a6
+    version: eae7f0179b036ca174155c7984a9c0c074b69c36
   notify: Restart KMIBot
 
 - name: Install extra config
