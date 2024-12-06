@@ -2,7 +2,7 @@
   git:
     repo: https://github.com/trickeydan/ferry-api.git
     dest: /opt/ferry-api
-    version: 3a33e8df5989f797f6202e1145e5072f22f738ae
+    version: bc0f161ce07a946ad51743ba805058d08edfbe62
   notify: Restart ferry-service
 
 - name: Install compose file
