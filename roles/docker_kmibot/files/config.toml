@@ -17,3 +17,4 @@ hour = 20
 minute = 0
 channel_id = {{ docker_kmibot_discord_pub_channel_id }}
 description = "Casual chat and food. All welcome."
+web_url = "https://ferry.containers-dev.sown.org.uk/"
