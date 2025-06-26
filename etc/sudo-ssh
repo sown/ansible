@@ -1,2 +1,7 @@
 #!/bin/bash
-exec sudo ssh "$@"
+proc=$(basename $0 | sed 's|sudo-||')
+parent=$(cat /proc/$PPID/comm)
+if [ "$parent" = "sshpass" ]; then
+    exec $proc "$@"
+fi
+exec sudo $proc "$@"
