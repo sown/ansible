@@ -10,9 +10,11 @@
   apt_repository:
     repo: deb [signed-by=/etc/apt/keyrings/zabbly.asc] https://pkgs.zabbly.com/incus/{{ vms_incus_repo_release }} {{ ansible_distribution_release }} main
 
-- name: Install incus
+- name: Install incus and web ui
   apt:
-    name: incus
+    name:
+      - incus
+      - incus-ui-canonical
 
 - name: Uninstall lxd-installer
   apt:
