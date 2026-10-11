@@ -2,7 +2,7 @@ options {
 	directory "/var/cache/bind";
 
 	forwarders {
-		# we forward all non-sown queries to UoS resolvers
+		# we forward all queries to UoS resolvers
 		152.78.110.110;
 		152.78.111.81;
 		152.78.111.89;
